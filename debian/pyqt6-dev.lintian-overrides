@@ -1,0 +1,2 @@
+# It is not an importable Python module
+pyqt6-dev: python-package-missing-depends-on-python

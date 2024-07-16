@@ -1,0 +1,4 @@
+usr/bin/pylupdate6
+usr/bin/pyuic6
+usr/lib/python3/dist-packages/PyQt6/lupdate
+usr/lib/python3/dist-packages/PyQt6/uic

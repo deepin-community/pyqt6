@@ -1,5 +1,103 @@
-template-repository (1.0-1) unstable; urgency=medium
+pyqt6 (6.7.0-1) unstable; urgency=medium
 
-  * Initial release
+  * New upstream release.
+  * Bump required SIP version to 6.8.
+  * Update debian/copyright.
+  * Remove libqt6opengl6-dev build-dependency (merged into qt6-base-dev).
+  * Bump Standards-Version to 4.7.0, no changes needed.
 
- -- Tsic404 <liuheng@deepin.org>  Sat, 28 Jan 2023 13:46:49 +0800
+ -- Dmitry Shachnev <mitya57@debian.org>  Sat, 04 May 2024 18:46:39 +0300
+
+pyqt6 (6.6.1-2) unstable; urgency=medium
+
+  * Do not use dh_python3 on examples (closes: #1057674).
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Sat, 09 Dec 2023 17:40:03 +0300
+
+pyqt6 (6.6.1-1) unstable; urgency=medium
+
+  * New upstream release.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Tue, 05 Dec 2023 23:28:22 +0300
+
+pyqt6 (6.6.0-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Bump python3-pyqt6.sip required version to 13.6.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Sat, 11 Nov 2023 18:52:21 +0300
+
+pyqt6 (6.5.2-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Bump python3-pyqtbuild required version to 1.15.
+  * Install PyQt6.QtSpatialAudio module in python3-pyqt6.qtmultimedia.
+  * Change shebangs to /usr/bin/python3 in examples.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Tue, 25 Jul 2023 13:37:34 +0300
+
+pyqt6 (6.4.2-1) unstable; urgency=medium
+
+  * New upstream release.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Tue, 07 Feb 2023 22:07:52 +0400
+
+pyqt6 (6.4.1-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Bump upstream copyright year.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Sun, 29 Jan 2023 19:27:41 +0400
+
+pyqt6 (6.4.0-3) unstable; urgency=medium
+
+  * Bump Standards-Version to 4.6.2, no changes needed.
+  * Upload to unstable.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Sat, 07 Jan 2023 18:04:24 +0400
+
+pyqt6 (6.4.0-2) experimental; urgency=medium
+
+  [ Pino Toscano ]
+  * Make pyqt6 buildable on non-Linux architectures:
+    - limit the qt6-connectivity-dev build dependency as linux-any, as the
+      Qt Connectivity modules are supported only on Linux (at least w.r.t.
+      Unix OSes)
+    - limit the python3-pyqt6.qtbluetooth, and python3-pyqt6.qtnfc binaries
+      as linux-any, as they use libraries of Qt Connectivity
+
+  [ Dmitry Shachnev ]
+  * Use the new names for Qt 6 -dev packages.
+  * Add packages for QtPdf and QtTextToSpeech modules (closes: #1021209).
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Tue, 03 Jan 2023 13:12:52 +0300
+
+pyqt6 (6.4.0-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Update debian/source/lintian-overrides for Lintian pointed hints.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Fri, 14 Oct 2022 19:21:32 +0300
+
+pyqt6 (6.3.1-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Install upstream NEWS file in all packages.
+  * Bump python3-pyqt6.sip required version to 13.4.
+  * Bump Standards-Version to 4.6.1, no changes needed.
+  * Upload to unstable.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Tue, 21 Jun 2022 12:25:15 +0300
+
+pyqt6 (6.3.0-1) experimental; urgency=medium
+
+  * New upstream release.
+  * Build-depend on qt6-base-dev ≥ 6.2.4+dfsg-3~ which depends on libgl-dev.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Wed, 20 Apr 2022 12:52:36 +0300
+
+pyqt6 (6.2.3-1) experimental; urgency=medium
+
+  * Initial release (closes: #1009244).
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Mon, 11 Apr 2022 14:02:57 +0300

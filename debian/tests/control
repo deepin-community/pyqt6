@@ -1,0 +1,87 @@
+Test-Command: debian/tests/test_import.sh dbus.mainloop.pyqt6
+Depends: python3-all-dbg, python3-dbus.mainloop.pyqt6
+Restrictions: superficial
+
+Test-Command: debian/tests/test_import.sh \
+    PyQt6.QtCore \
+    PyQt6.QtDBus \
+    PyQt6.QtGui \
+    PyQt6.QtNetwork \
+    PyQt6.QtOpenGL \
+    PyQt6.QtOpenGLWidgets \
+    PyQt6.QtPrintSupport \
+    PyQt6.QtSql \
+    PyQt6.QtTest \
+    PyQt6.QtWidgets \
+    PyQt6.QtXml
+Depends: python3-all-dbg, python3-pyqt6
+Restrictions: superficial
+
+Test-Command: debian/tests/test_import.sh PyQt6.QtBluetooth
+Depends: python3-all-dbg, python3-pyqt6.qtbluetooth
+Restrictions: superficial
+
+Test-Command: debian/tests/test_import.sh PyQt6.QtDesigner
+Depends: python3-all-dbg, python3-pyqt6.qtdesigner
+Restrictions: superficial
+
+Test-Command: debian/tests/test_import.sh PyQt6.QtHelp
+Depends: python3-all-dbg, python3-pyqt6.qthelp
+Restrictions: superficial
+
+Test-Command: debian/tests/test_import.sh PyQt6.QtMultimedia PyQt6.QtMultimediaWidgets PyQt6.QtSpatialAudio
+Depends: python3-all-dbg, python3-pyqt6.qtmultimedia
+Restrictions: superficial
+
+Test-Command: debian/tests/test_import.sh PyQt6.QtNfc
+Depends: python3-all-dbg, python3-pyqt6.qtnfc
+Restrictions: superficial
+
+Test-Command: debian/tests/test_import.sh PyQt6.QtPdf PyQt6.QtPdfWidgets
+Architecture: amd64 arm64 armhf i386
+Depends: python3-all-dbg, python3-pyqt6.qtpdf
+Restrictions: superficial
+
+Test-Command: debian/tests/test_import.sh PyQt6.QtPositioning
+Depends: python3-all-dbg, python3-pyqt6.qtpositioning
+Restrictions: superficial
+
+Test-Command: debian/tests/test_import.sh PyQt6.QtQml
+Depends: python3-all-dbg, python3-pyqt6.qtqml
+Restrictions: superficial
+
+Test-Command: debian/tests/test_import.sh PyQt6.QtQuick PyQt6.QtQuickWidgets
+Depends: python3-all-dbg, python3-pyqt6.qtquick
+Restrictions: superficial
+
+Test-Command: debian/tests/test_import.sh PyQt6.QtQuick3D
+Depends: python3-all-dbg, python3-pyqt6.qtquick3d
+Restrictions: superficial
+
+Test-Command: debian/tests/test_import.sh PyQt6.QtRemoteObjects
+Depends: python3-all-dbg, python3-pyqt6.qtremoteobjects
+Restrictions: superficial
+
+Test-Command: debian/tests/test_import.sh PyQt6.QtSensors
+Depends: python3-all-dbg, python3-pyqt6.qtsensors
+Restrictions: superficial
+
+Test-Command: debian/tests/test_import.sh PyQt6.QtSerialPort
+Depends: python3-all-dbg, python3-pyqt6.qtserialport
+Restrictions: superficial
+
+Test-Command: debian/tests/test_import.sh PyQt6.QtSvg PyQt6.QtSvgWidgets
+Depends: python3-all-dbg, python3-pyqt6.qtsvg
+Restrictions: superficial
+
+Test-Command: debian/tests/test_import.sh PyQt6.QtTextToSpeech
+Depends: python3-all-dbg, python3-pyqt6.qttexttospeech
+Restrictions: superficial
+
+Test-Command: debian/tests/test_import.sh PyQt6.QtWebChannel
+Depends: python3-all-dbg, python3-pyqt6.qtwebchannel
+Restrictions: superficial
+
+Test-Command: debian/tests/test_import.sh PyQt6.QtWebSockets
+Depends: python3-all-dbg, python3-pyqt6.qtwebsockets
+Restrictions: superficial

@@ -1,15 +1,297 @@
-Source: template-repository
-Section: unknown
+Source: pyqt6
+Section: python
 Priority: optional
-Maintainer: Tsic404 <liuheng@deepin.org>
-Build-Depends: debhelper (>= 11)
-Standards-Version: 4.1.3
-Homepage: https://github.com/deepin-community/template-repository
-#Vcs-Browser: https://salsa.debian.org/debian/deepin-community-template-repository
-#Vcs-Git: https://salsa.debian.org/debian/deepin-community-template-repository.git
+Maintainer: Debian Python Team <team+python@tracker.debian.org>
+Uploaders: Dmitry Shachnev <mitya57@debian.org>
+Build-Depends: debhelper-compat (= 13),
+               dh-python,
+               python-dbus-dev,
+               python3-all-dev,
+               python3-dbus,
+               python3-pyqtbuild (>= 1.15),
+               python3-sipbuild (>= 6.8),
+               qt6-base-dev (>= 6.4.2+dfsg-12~),
+               qt6-connectivity-dev [linux-any],
+               qt6-declarative-dev,
+               qt6-multimedia-dev,
+               qt6-pdf-dev [amd64 arm64 armhf i386],
+               qt6-positioning-dev,
+               qt6-quick3d-dev,
+               qt6-remoteobjects-dev,
+               qt6-sensors-dev,
+               qt6-serialport-dev,
+               qt6-shadertools-dev,
+               qt6-speech-dev,
+               qt6-svg-dev,
+               qt6-tools-dev,
+               qt6-webchannel-dev,
+               qt6-websockets-dev,
+               sip-tools (>= 6.8)
+Rules-Requires-Root: no
+Standards-Version: 4.7.0
+Homepage: https://riverbankcomputing.com/software/pyqt/intro
+Vcs-Git: https://salsa.debian.org/python-team/packages/pyqt6.git
+Vcs-Browser: https://salsa.debian.org/python-team/packages/pyqt6
 
-Package: template-repository
+Package: pyqt6-dev
+Architecture: all
+Depends: ${misc:Depends}
+Multi-Arch: foreign
+Description: development files for PyQt6
+ This package contains the source SIP files from which the Python
+ bindings for Qt 6 are created. They are needed for building PyQt6
+ as well as creating bindings for own Qt 6 widgets written in C++.
+
+Package: pyqt6-dev-tools
+Architecture: all
+Depends: python3-pyqt6 (>= ${source:Version}),
+         ${misc:Depends},
+         ${python3:Depends}
+Description: development tools for PyQt6
+ This package contains various support tools for PyQt6 developers:
+  * a user interface compiler (pyuic6)
+  * a translation string finder (pylupdate6)
+
+Package: pyqt6-examples
+Architecture: all
+Depends: python3-pyqt6 (>= ${source:Version}),
+         ${misc:Depends},
+         ${python3:Depends}
+Description: Examples for PyQt6
+ PyQt6 exposes the Qt 6 toolkit to Python.
+ .
+ This package the Qt example programs ported to Python.
+
+Package: python3-dbus.mainloop.pyqt6
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: <insert up to 60 chars description>
- <insert long description, indented with spaces>
+Depends: python3-dbus, ${misc:Depends}, ${python3:Depends}, ${shlibs:Depends}
+Description: D-Bus Qt main loop support for Python
+ The dbus.mainloop.pyqt6 module provides support for Qt main loop for
+ applications that use dbus-python. By default Qt uses main loop from
+ GLib on UNIX-like systems, not its own one.
+
+Package: python3-pyqt6
+Architecture: any
+Depends: python3-pyqt6.sip (<< 14),
+         python3-pyqt6.sip (>= 13.6),
+         ${misc:Depends},
+         ${python3:Depends},
+         ${shlibs:Depends}
+Description: Python bindings for Qt 6
+ PyQt6 exposes the Qt 6 API to Python.
+ This package contains the following modules:
+  * QtCore
+  * QtDBus
+  * QtGui
+  * QtNetwork
+  * QtOpenGL
+  * QtOpenGLWidgets
+  * QtPrintSupport
+  * QtSql
+  * QtTest
+  * QtWidgets
+  * QtXml
+
+Package: python3-pyqt6.qtbluetooth
+Architecture: linux-any
+Depends: python3-pyqt6 (= ${binary:Version}),
+         ${misc:Depends},
+         ${python3:Depends},
+         ${shlibs:Depends}
+Description: Python bindings for Qt 6 Bluetooth module
+ Qt Bluetooth API provides connectivity between Bluetooth enabled devices.
+ .
+ This package contains the QtBluetooth module of PyQt6.
+
+Package: python3-pyqt6.qtdesigner
+Architecture: any
+Depends: python3-pyqt6 (= ${binary:Version}),
+         ${misc:Depends},
+         ${python3:Depends},
+         ${shlibs:Depends}
+Description: Python bindings for Qt 6 Designer module
+ Qt Designer API provides the possibility of constructing user interfaces from
+ UI files at run-time.
+ .
+ This package contains the QtDesigner module of PyQt6 and the pyqt6 plugin for
+ Qt Designer.
+
+Package: python3-pyqt6.qthelp
+Architecture: any
+Depends: python3-pyqt6 (= ${binary:Version}),
+         ${misc:Depends},
+         ${python3:Depends},
+         ${shlibs:Depends}
+Description: Python bindings for Qt 6 Help module
+ Qt Help API provides classes for accessing help contents programmatically to
+ be able to integrate online help into Qt applications.
+ .
+ This package contains the QtHelp module of PyQt6.
+
+Package: python3-pyqt6.qtmultimedia
+Architecture: any
+Depends: python3-pyqt6 (= ${binary:Version}),
+         ${misc:Depends},
+         ${python3:Depends},
+         ${shlibs:Depends}
+Description: Python bindings for Qt 6 Multimedia module
+ Qt Multimedia API provides a rich set of classes to handle multimedia content.
+ .
+ This package contains the QtMultimedia, QtMultimediaWidgets and QtSpatialAudio
+ modules of PyQt6.
+
+Package: python3-pyqt6.qtnfc
+Architecture: linux-any
+Depends: python3-pyqt6 (= ${binary:Version}),
+         ${misc:Depends},
+         ${python3:Depends},
+         ${shlibs:Depends}
+Description: Python bindings for Qt 6 NFC module
+ Qt NFC API provides connectivity between NFC enabled devices.
+ .
+ This package contains the QtNfc module of PyQt6.
+
+Package: python3-pyqt6.qtpdf
+Architecture: amd64 arm64 armhf i386
+Depends: python3-pyqt6 (= ${binary:Version}),
+         ${misc:Depends},
+         ${python3:Depends},
+         ${shlibs:Depends}
+Description: Python bindings for Qt 6 PDF module
+ Qt PDF API contains classes and functions for rendering PDF documents.
+ .
+ This package contains the QtPdf and QtPdfWidgets modules of PyQt6.
+
+Package: python3-pyqt6.qtpositioning
+Architecture: any
+Depends: python3-pyqt6 (= ${binary:Version}),
+         ${misc:Depends},
+         ${python3:Depends},
+         ${shlibs:Depends}
+Description: Python bindings for Qt 6 Positioning module
+ Qt Positioning API provides positioning information.
+ .
+ This package contains the QtPositioning module of PyQt6.
+
+Package: python3-pyqt6.qtqml
+Architecture: any
+Depends: python3-pyqt6 (= ${binary:Version}),
+         ${misc:Depends},
+         ${python3:Depends},
+         ${shlibs:Depends}
+Description: Python bindings for Qt 6 QML module
+ Qt QML API provides a framework for developing applications and libraries with
+ the QML language.
+ .
+ This package contains the QtQml module of PyQt6 and the qmlscene plugin that
+ collects all the Python plugins it can find.
+
+Package: python3-pyqt6.qtquick
+Architecture: any
+Depends: python3-pyqt6 (= ${binary:Version}),
+         python3-pyqt6.qtqml (= ${binary:Version}),
+         ${misc:Depends},
+         ${python3:Depends},
+         ${shlibs:Depends}
+Description: Python bindings for Qt 6 Quick module
+ Qt Quick API is the standard library for writing QML applications.
+ .
+ This package contains the QtQuick and QtQuickWidgets modules of PyQt6.
+
+Package: python3-pyqt6.qtquick3d
+Architecture: any
+Depends: python3-pyqt6 (= ${binary:Version}),
+         python3-pyqt6.qtqml (= ${binary:Version}),
+         ${misc:Depends},
+         ${python3:Depends},
+         ${shlibs:Depends}
+Description: Python bindings for Qt 6 Quick 3D module
+ Qt Quick 3D provides a high-level API for creating 3D content and 3D user
+ interfaces based on Qt Quick.
+ .
+ This package contains the QtQuick3D module of PyQt6.
+
+Package: python3-pyqt6.qtremoteobjects
+Architecture: any
+Depends: python3-pyqt6 (= ${binary:Version}),
+         ${misc:Depends},
+         ${python3:Depends},
+         ${shlibs:Depends}
+Description: Python bindings for Qt 6 Remote Objects module
+ Qt Remote Objects API is an Inter-Process Communication (IPC) module developed
+ for Qt.
+ .
+ This package contains the QtRemoteObjects module of PyQt6.
+
+Package: python3-pyqt6.qtsensors
+Architecture: any
+Depends: python3-pyqt6 (= ${binary:Version}),
+         ${misc:Depends},
+         ${python3:Depends},
+         ${shlibs:Depends}
+Description: Python bindings for Qt 6 Sensors module
+ Qt Sensors API provides access to sensor hardware via QML and C++ interfaces.
+ .
+ This package contains the QtSensors module of PyQt6.
+
+Package: python3-pyqt6.qtserialport
+Architecture: any
+Depends: python3-pyqt6 (= ${binary:Version}),
+         ${misc:Depends},
+         ${python3:Depends},
+         ${shlibs:Depends}
+Description: Python bindings for Qt 6 Serial Port module
+ Qt Serial Port API provides the basic functionality, which includes
+ configuring, I/O operations, getting and setting the control signals of the
+ RS-232 pinouts.
+ .
+ This package contains the QtSerialPort module of PyQt6.
+
+Package: python3-pyqt6.qtsvg
+Architecture: any
+Depends: python3-pyqt6 (= ${binary:Version}),
+         ${misc:Depends},
+         ${python3:Depends},
+         ${shlibs:Depends}
+Description: Python bindings for Qt 6 SVG module
+ Qt SVG API provides classes for rendering and displaying SVG drawings in
+ widgets and on other paint devices.
+ .
+ This package contains the QtSvg and QtSvgWidgets modules of PyQt6.
+
+Package: python3-pyqt6.qttexttospeech
+Architecture: any
+Depends: python3-pyqt6 (= ${binary:Version}),
+         ${misc:Depends},
+         ${python3:Depends},
+         ${shlibs:Depends}
+Description: Python bindings for Qt 6 TextToSpeech module
+ Qt TextToSpeech API enables a Qt application to read out text by using speech
+ synthesis.
+ .
+ This package contains the QtTextToSpeech module of PyQt6.
+
+Package: python3-pyqt6.qtwebchannel
+Architecture: any
+Depends: python3-pyqt6 (= ${binary:Version}),
+         ${misc:Depends},
+         ${python3:Depends},
+         ${shlibs:Depends}
+Description: Python bindings for Qt 6 WebChannel module
+ Qt WebChannel API enables peer-to-peer communication between a server and a
+ client (HTML/JavaScript or QML application).
+ .
+ This package contains the QtWebChannel module of PyQt6.
+
+Package: python3-pyqt6.qtwebsockets
+Architecture: any
+Depends: python3-pyqt6 (= ${binary:Version}),
+         ${misc:Depends},
+         ${python3:Depends},
+         ${shlibs:Depends}
+Description: Python bindings for Qt 6 WebSockets module
+ Qt WebSockets API provides C++ and QML interfaces that enable Qt applications
+ to act as a server that can process WebSocket requests, or a client that can
+ consume data received from the server, or both.
+ .
+ This package contains the QtWebSockets module of PyQt6.
