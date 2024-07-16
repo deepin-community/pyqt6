@@ -1,0 +1,3 @@
+usr/lib/${DEB_HOST_MULTIARCH}/qt6/plugins/PyQt6/libpyqt6qmlplugin.so
+usr/lib/python3/dist-packages/PyQt6/QtQml.abi3.so
+usr/lib/python3/dist-packages/PyQt6/QtQml.pyi
