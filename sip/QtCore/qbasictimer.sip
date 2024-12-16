@@ -35,6 +35,13 @@ public:
     void start(int msec, QObject *obj);
     void stop();
     void swap(QBasicTimer &other /Constrained/);
+%If (Qt_6_8_0 -)
+    int id() const;
+%MethodCode
+        sipRes = qToUnderlying<Qt::TimerId>(sipCpp->id());
+%End
+
+%End
 
 private:
     QBasicTimer(const QBasicTimer &);

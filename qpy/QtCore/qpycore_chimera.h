@@ -224,7 +224,7 @@ public:
 
     // Register a type as a Python enum.
     static void registerPyEnum(PyObject *enum_type,
-            const QByteArray &cpp_qualname);
+            const QByteArray &fq_cpp_name);
 
     // The Qt meta-type.
     QMetaType metatype;

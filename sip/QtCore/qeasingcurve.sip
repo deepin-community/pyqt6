@@ -216,8 +216,12 @@ public:
     QEasingCurve(QEasingCurve::Type type = QEasingCurve::Linear);
     QEasingCurve(const QEasingCurve &other);
     ~QEasingCurve();
+%If (- Qt_6_8_0)
     bool operator==(const QEasingCurve &other) const;
+%End
+%If (- Qt_6_8_0)
     bool operator!=(const QEasingCurve &other) const;
+%End
     qreal amplitude() const;
     void setAmplitude(qreal amplitude);
     qreal period() const;
@@ -286,3 +290,9 @@ public:
 
 QDataStream &operator<<(QDataStream &, const QEasingCurve & /Constrained/) /ReleaseGIL/;
 QDataStream &operator>>(QDataStream &, QEasingCurve & /Constrained/) /ReleaseGIL/;
+%If (Qt_6_8_0 -)
+bool operator!=(const QEasingCurve &lhs, const QEasingCurve &rhs);
+%End
+%If (Qt_6_8_0 -)
+bool operator==(const QEasingCurve &lhs, const QEasingCurve &rhs);
+%End

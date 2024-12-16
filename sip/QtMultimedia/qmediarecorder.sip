@@ -116,6 +116,25 @@ signals:
     void audioBitRateChanged();
     void audioChannelCountChanged();
     void audioSampleRateChanged();
+
+public:
+%If (Qt_6_8_0 -)
+    void setOutputDevice(QIODevice *device);
+%End
+%If (Qt_6_8_0 -)
+    QIODevice *outputDevice() const;
+%End
+%If (Qt_6_8_0 -)
+    bool autoStop() const;
+%End
+%If (Qt_6_8_0 -)
+    void setAutoStop(bool autoStop);
+%End
+
+signals:
+%If (Qt_6_8_0 -)
+    void autoStopChanged();
+%End
 };
 
 %End

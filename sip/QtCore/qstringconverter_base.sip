@@ -71,7 +71,12 @@ public:
 protected:
     QStringConverter();
     QStringConverter(QStringConverter::Encoding encoding, QStringConverterBase::Flags f);
+%If (Qt_6_8_0 -)
+    QStringConverter(QAnyStringView name, QStringConverterBase::Flags f);
+%End
+%If (- Qt_6_8_0)
     QStringConverter(const char *name, QStringConverterBase::Flags f);
+%End
     ~QStringConverter();
 
 public:

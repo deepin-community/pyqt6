@@ -58,6 +58,12 @@ public:
         NoSubpixelAntialias,
         NoFontMerging,
         PreferNoShaping,
+%If (Qt_6_8_0 -)
+        ContextFontMerging,
+%End
+%If (Qt_6_8_0 -)
+        PreferTypoLineMetrics,
+%End
     };
 
     enum Weight /BaseType=IntEnum/

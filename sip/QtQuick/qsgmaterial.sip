@@ -47,6 +47,9 @@ public:
     virtual int compare(const QSGMaterial *other) const;
     QSGMaterial::Flags flags() const;
     void setFlag(QSGMaterial::Flags flags, bool enabled = true);
+%If (Qt_6_8_0 -)
+    int viewCount() const;
+%End
 
 private:
     QSGMaterial(const QSGMaterial &);

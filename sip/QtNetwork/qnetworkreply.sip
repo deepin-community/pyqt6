@@ -182,4 +182,17 @@ signals:
 %If (Qt_6_3_0 -)
     void requestSent();
 %End
+
+public:
+%If (Qt_6_8_0 -)
+    QHttpHeaders headers() const;
+%End
+
+protected:
+%If (Qt_6_8_0 -)
+    void setHeaders(const QHttpHeaders &newHeaders);
+%End
+%If (Qt_6_8_0 -)
+    void setWellKnownHeader(QHttpHeaders::WellKnownHeader name, QByteArrayView value);
+%End
 };

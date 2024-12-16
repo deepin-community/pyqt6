@@ -56,9 +56,15 @@ public:
     QModelIndex sibling(int arow, int acolumn) const;
     QModelIndex siblingAtColumn(int column) const;
     QModelIndex siblingAtRow(int row) const;
+%If (- Qt_6_8_0)
     bool operator==(const QModelIndex &other) const;
+%End
+%If (- Qt_6_8_0)
     bool operator<(const QModelIndex &other) const;
+%End
+%If (- Qt_6_8_0)
     bool operator!=(const QModelIndex &other) const;
+%End
     Py_hash_t __hash__() const;
 %MethodCode
         sipRes = qHash(*sipCpp);
@@ -86,11 +92,21 @@ public:
     bool isValid() const;
     void swap(QPersistentModelIndex &other /Constrained/);
     operator QModelIndex() const;
+%If (- Qt_6_8_0)
     bool operator<(const QPersistentModelIndex &other) const;
+%End
+%If (- Qt_6_8_0)
     bool operator==(const QPersistentModelIndex &other) const;
+%End
+%If (- Qt_6_8_0)
     bool operator==(const QModelIndex &other) const;
+%End
+%If (- Qt_6_8_0)
     bool operator!=(const QPersistentModelIndex &other) const;
+%End
+%If (- Qt_6_8_0)
     bool operator!=(const QModelIndex &other) const;
+%End
     Py_hash_t __hash__() const;
 %MethodCode
         sipRes = qHash(*sipCpp);
@@ -355,3 +371,76 @@ public:
     QModelRoleData &operator[](qsizetype index) const;
     QVariant *dataForRole(int role) const;
 };
+
+%If (Qt_6_8_0 -)
+bool operator>=(const QPersistentModelIndex &lhs, const QModelIndex &rhs);
+%End
+%If (Qt_6_8_0 -)
+bool operator>=(const QModelIndex &lhs, const QPersistentModelIndex &rhs);
+%End
+%If (Qt_6_8_0 -)
+bool operator>=(const QPersistentModelIndex &lhs, const QPersistentModelIndex &rhs);
+%End
+%If (Qt_6_8_0 -)
+bool operator>=(const QModelIndex &lhs, const QModelIndex &rhs);
+%End
+%If (Qt_6_8_0 -)
+bool operator<=(const QPersistentModelIndex &lhs, const QModelIndex &rhs);
+%End
+%If (Qt_6_8_0 -)
+bool operator<=(const QModelIndex &lhs, const QPersistentModelIndex &rhs);
+%End
+%If (Qt_6_8_0 -)
+bool operator<=(const QPersistentModelIndex &lhs, const QPersistentModelIndex &rhs);
+%End
+%If (Qt_6_8_0 -)
+bool operator<=(const QModelIndex &lhs, const QModelIndex &rhs);
+%End
+%If (Qt_6_8_0 -)
+bool operator>(const QPersistentModelIndex &lhs, const QModelIndex &rhs);
+%End
+%If (Qt_6_8_0 -)
+bool operator>(const QModelIndex &lhs, const QPersistentModelIndex &rhs);
+%End
+%If (Qt_6_8_0 -)
+bool operator>(const QPersistentModelIndex &lhs, const QPersistentModelIndex &rhs);
+%End
+%If (Qt_6_8_0 -)
+bool operator>(const QModelIndex &lhs, const QModelIndex &rhs);
+%End
+%If (Qt_6_8_0 -)
+bool operator<(const QPersistentModelIndex &lhs, const QModelIndex &rhs);
+%End
+%If (Qt_6_8_0 -)
+bool operator<(const QModelIndex &lhs, const QPersistentModelIndex &rhs);
+%End
+%If (Qt_6_8_0 -)
+bool operator<(const QPersistentModelIndex &lhs, const QPersistentModelIndex &rhs);
+%End
+%If (Qt_6_8_0 -)
+bool operator<(const QModelIndex &lhs, const QModelIndex &rhs);
+%End
+%If (Qt_6_8_0 -)
+bool operator!=(const QPersistentModelIndex &lhs, const QModelIndex &rhs);
+%End
+%If (Qt_6_8_0 -)
+bool operator!=(const QModelIndex &lhs, const QPersistentModelIndex &rhs);
+%End
+%If (Qt_6_8_0 -)
+bool operator!=(const QPersistentModelIndex &lhs, const QPersistentModelIndex &rhs);
+%End
+%If (Qt_6_8_0 -)
+bool operator!=(const QModelIndex &lhs, const QModelIndex &rhs);
+%End
+%If (Qt_6_8_0 -)
+bool operator==(const QPersistentModelIndex &lhs, const QModelIndex &rhs);
+%End
+%If (Qt_6_8_0 -)
+bool operator==(const QModelIndex &lhs, const QPersistentModelIndex &rhs);
+%End
+%If (Qt_6_8_0 -)
+bool operator==(const QPersistentModelIndex &lhs, const QPersistentModelIndex &rhs);
+%End
+%If (Qt_6_8_0 -)
+bool operator==(const QModelIndex &lhs, const QModelIndex &rhs);
+%End

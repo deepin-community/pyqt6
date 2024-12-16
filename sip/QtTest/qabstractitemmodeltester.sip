@@ -29,6 +29,15 @@ class QAbstractItemModelTester : public QObject
 #include <qabstractitemmodeltester.h>
 %End
 
+%ConvertToSubClassCode
+    sipType = (sipCpp->inherits("QAbstractItemModelTester") ? sipType_QAbstractItemModelTester : 0);
+    
+    #if QT_VERSION < 0x060800
+    if (!sipType && sipCpp->inherits("QSignalSpy"))
+        sipType = sipType_QSignalSpy;
+    #endif
+%End
+
 public:
     enum class FailureReportingMode
     {

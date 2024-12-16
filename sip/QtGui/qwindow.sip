@@ -213,4 +213,12 @@ protected:
     virtual void paintEvent(QPaintEvent *);
     virtual void closeEvent(QCloseEvent *);
     virtual bool nativeEvent(const QByteArray &eventType, void *message, qintptr *result /Out/);
+
+public:
+%If (PyQt_Vulkan)
+    void setVulkanInstance(QVulkanInstance *instance);
+%End
+%If (PyQt_Vulkan)
+    QVulkanInstance *vulkanInstance() const;
+%End
 };

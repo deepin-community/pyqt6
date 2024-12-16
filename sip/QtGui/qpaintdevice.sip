@@ -41,6 +41,12 @@ public:
         PdmPhysicalDpiY,
         PdmDevicePixelRatio,
         PdmDevicePixelRatioScaled,
+%If (Qt_6_8_0 -)
+        PdmDevicePixelRatioF_EncodedA,
+%End
+%If (Qt_6_8_0 -)
+        PdmDevicePixelRatioF_EncodedB,
+%End
     };
 
     virtual ~QPaintDevice();

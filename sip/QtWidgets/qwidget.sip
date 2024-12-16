@@ -353,6 +353,9 @@ public:
     void overrideWindowFlags(Qt::WindowFlags type);
     static QWidget *find(WId);
     QWidget *childAt(const QPoint &p) const;
+%If (Qt_6_8_0 -)
+    QWidget *childAt(const QPointF &p) const;
+%End
     void setAttribute(Qt::WidgetAttribute attribute, bool on = true);
     virtual QPaintEngine *paintEngine() const;
     void ensurePolished() const;

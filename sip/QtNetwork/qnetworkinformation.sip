@@ -62,7 +62,12 @@ public:
     static QNetworkInformation *instance();
 
 signals:
+%If (Qt_6_8_0 -)
+    void reachabilityChanged(QNetworkInformation::Reachability newReachability);
+%End
+%If (- Qt_6_8_0)
     void reachabilityChanged(QNetworkInformation::Reachability newReachability /ScopesStripped=1/);
+%End
 
 public:
 %If (Qt_6_2_0 -)
@@ -101,8 +106,11 @@ public:
 %End
 
 signals:
-%If (Qt_6_3_0 -)
+%If (Qt_6_8_0 -)
     void transportMediumChanged(QNetworkInformation::TransportMedium current);
+%End
+%If (Qt_6_3_0 - Qt_6_8_0)
+    void transportMediumChanged(QNetworkInformation::TransportMedium current /ScopesStripped=1/);
 %End
 %If (Qt_6_3_0 -)
     void isMeteredChanged(bool isMetered);

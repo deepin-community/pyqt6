@@ -59,6 +59,9 @@ public:
         CoverArtImage,
         Orientation,
         Resolution,
+%If (Qt_6_8_0 -)
+        HasHdrContent,
+%End
     };
 
     QVariant value(QMediaMetaData::Key k) const;

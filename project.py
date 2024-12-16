@@ -28,7 +28,7 @@ from sipbuild import (Buildable, BuildableModule, Installable, Option,
 
 
 # The minimum sip module ABI version needed.
-ABI_VERSION = '13.6'
+ABI_VERSION = '13.8'
 
 
 class PyQt(PyQtProject):

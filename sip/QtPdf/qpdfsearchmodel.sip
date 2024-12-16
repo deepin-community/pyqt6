@@ -56,4 +56,14 @@ signals:
 
 protected:
     virtual void timerEvent(QTimerEvent *event);
+
+public:
+%If (Qt_6_8_0 -)
+    int count() const /__len__/;
+%End
+
+signals:
+%If (Qt_6_8_0 -)
+    void countChanged();
+%End
 };

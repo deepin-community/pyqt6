@@ -48,4 +48,18 @@ public:
     virtual QModelIndex sibling(int row, int column, const QModelIndex &idx) const;
     virtual bool moveRows(const QModelIndex &sourceParent, int sourceRow, int count, const QModelIndex &destinationParent, int destinationChild);
     virtual bool moveColumns(const QModelIndex &sourceParent, int sourceColumn, int count, const QModelIndex &destinationParent, int destinationChild);
+%If (Qt_6_8_0 -)
+    bool handleSourceLayoutChanges() const;
+%End
+%If (Qt_6_8_0 -)
+    bool handleSourceDataChanges() const;
+%End
+
+protected:
+%If (Qt_6_8_0 -)
+    void setHandleSourceLayoutChanges(bool);
+%End
+%If (Qt_6_8_0 -)
+    void setHandleSourceDataChanges(bool);
+%End
 };

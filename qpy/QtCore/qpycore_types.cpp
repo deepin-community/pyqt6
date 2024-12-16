@@ -30,6 +30,7 @@
 #include "qpycore_chimera.h"
 #include "qpycore_classinfo.h"
 #include "qpycore_enums_flags.h"
+#include "qpycore_enums_flags_metatype.h"
 #include "qpycore_misc.h"
 #include "qpycore_objectified_strings.h"
 #include "qpycore_pyqtproperty.h"
@@ -126,6 +127,7 @@ const qpycore_metaobject *qpycore_get_dynamic_metaobject(sipWrapperType *wt)
         const EnumFlag &ef = penums.at(i);
 
         QMetaEnumBuilder enum_builder = builder.addEnumerator(ef.name);
+        enum_builder.setMetaType(ef.metaType);
         enum_builder.setIsFlag(ef.isFlag);
         enum_builder.setIsScoped(true);
 
@@ -235,7 +237,7 @@ const qpycore_metaobject *qpycore_get_dynamic_metaobject(sipWrapperType *wt)
         }
 
         // Note that there is an addProperty() overload that also takes a
-        // QMetaType argument (rather than call QMetaType::fromType() as this
+        // QMetaType argument (rather than call QMetaType::fromName() as this
         // overload does) so we could pass the QMetaType that the parser
         // created.  However this breaks properties that are application Python
         // enums which have a parsed QMetaType that describes an int whereas Qt
@@ -283,7 +285,7 @@ const qpycore_metaobject *qpycore_get_dynamic_metaobject(sipWrapperType *wt)
 
         if (pp->pyqtprop_reset && PyCallable_Check(pp->pyqtprop_reset))
         {
-            // Resetable.
+            // Resettable.
             prop_builder.setResettable(true);
         }
 
@@ -305,8 +307,18 @@ const qpycore_metaobject *qpycore_get_dynamic_metaobject(sipWrapperType *wt)
         Py_DECREF(pprop.first);
     }
 
-    // Initialise the rest of the meta-object.
+    // Build the meta-object.
     qo->mo = builder.toMetaObject();
+
+    // Save the meta-object in any enums/flags.
+    for (int i = 0; i < penums.count(); ++i)
+    {
+        const EnumFlag &ef = penums.at(i);
+
+        static_cast<EnumFlagMetaTypeInterface *>(
+                const_cast<QtPrivate::QMetaTypeInterface *>(
+                        ef.metaType.iface()))->metaObject = qo->mo;
+    }
 
     // Save for next time.
     sipSetTypeUserData(wt, qo);
@@ -486,7 +498,8 @@ static int trawl_type(PyTypeObject *pytype, qpycore_metaobject *qo,
 // Return the QMetaObject for an enum type's scope.
 static const QMetaObject *get_scope_qmetaobject(const Chimera *ct)
 {
-    // Check it is an enum.
+    // Check it is an enum.  Note that (starting with PyQt v6.8) we can return
+    // a value for all enums/flags.
     if (!ct->isEnumOrFlag())
         return 0;
 

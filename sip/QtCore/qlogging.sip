@@ -41,6 +41,9 @@ class QMessageLogContext /NoDefaultCtors/
 %End
 
 public:
+%If (Qt_6_8_0 -)
+    static const int CurrentVersion;
+%End
     int line;
     const char *file;
     const char *function;

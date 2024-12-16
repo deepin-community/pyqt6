@@ -77,6 +77,9 @@ public:
 %If (Qt_6_5_0 -)
         UseCredentialsAttribute,
 %End
+%If (Qt_6_8_0 -)
+        FullLocalServerNameAttribute,
+%End
         User,
         UserMax,
     };
@@ -174,5 +177,11 @@ public:
 %End
 %If (Qt_6_2_0 -)
     void setDecompressedSafetyCheckThreshold(qint64 threshold);
+%End
+%If (Qt_6_8_0 -)
+    QHttpHeaders headers() const;
+%End
+%If (Qt_6_8_0 -)
+    void setHeaders(const QHttpHeaders &newHeaders);
 %End
 };

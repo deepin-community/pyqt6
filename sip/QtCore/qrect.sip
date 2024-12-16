@@ -20,6 +20,10 @@
 // WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
 
+%ModuleCode
+#include <qrect.h>
+%End
+
 class QRect
 {
 %TypeHeaderCode
@@ -145,7 +149,19 @@ public:
 
 QDataStream &operator<<(QDataStream &, const QRect &) /ReleaseGIL/;
 QDataStream &operator>>(QDataStream &, QRect & /Constrained/) /ReleaseGIL/;
+%If (Qt_6_8_0 -)
+bool operator==(const QRectF &lhs, const QRect &rhs);
+%End
+%If (Qt_6_8_0 -)
+bool operator==(const QRect &lhs, const QRectF &rhs);
+%End
 bool operator==(const QRect &r1, const QRect &r2);
+%If (Qt_6_8_0 -)
+bool operator!=(const QRectF &lhs, const QRect &rhs);
+%End
+%If (Qt_6_8_0 -)
+bool operator!=(const QRect &lhs, const QRectF &rhs);
+%End
 bool operator!=(const QRect &r1, const QRect &r2);
 
 class QRectF
@@ -284,3 +300,9 @@ QRect operator-(const QRect &lhs, const QMargins &rhs);
 QRectF operator+(const QRectF &lhs, const QMarginsF &rhs);
 QRectF operator+(const QMarginsF &lhs, const QRectF &rhs);
 QRectF operator-(const QRectF &lhs, const QMarginsF &rhs);
+%If (Qt_6_8_0 -)
+bool qFuzzyCompare(const QRectF &lhs, const QRectF &rhs);
+%End
+%If (Qt_6_8_0 -)
+bool qFuzzyIsNull(const QRectF &rect);
+%End

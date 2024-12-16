@@ -31,6 +31,9 @@ class QVideoFrame
 public:
     QVideoFrame();
     QVideoFrame(const QVideoFrameFormat &format);
+%If (Qt_6_8_0 -)
+    explicit QVideoFrame(const QImage &image);
+%End
     QVideoFrame(const QVideoFrame &other);
     ~QVideoFrame();
 
@@ -122,6 +125,12 @@ public:
 %End
 %If (Qt_6_7_0 -)
     QtVideo::Rotation rotation() const;
+%End
+%If (Qt_6_8_0 -)
+    void setStreamFrameRate(qreal rate);
+%End
+%If (Qt_6_8_0 -)
+    qreal streamFrameRate() const;
 %End
 };
 

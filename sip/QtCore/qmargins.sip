@@ -20,6 +20,10 @@
 // WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
 
+%ModuleCode
+#include <qmargins.h>
+%End
+
 class QMargins
 {
 %TypeHeaderCode
@@ -51,7 +55,19 @@ public:
 %End
 };
 
+%If (Qt_6_8_0 -)
+bool operator==(const QMarginsF &lhs, const QMargins &rhs);
+%End
+%If (Qt_6_8_0 -)
+bool operator==(const QMargins &lhs, const QMarginsF &rhs);
+%End
 bool operator==(const QMargins &m1, const QMargins &m2);
+%If (Qt_6_8_0 -)
+bool operator!=(const QMarginsF &lhs, const QMargins &rhs);
+%End
+%If (Qt_6_8_0 -)
+bool operator!=(const QMargins &lhs, const QMarginsF &rhs);
+%End
 bool operator!=(const QMargins &m1, const QMargins &m2);
 QDataStream &operator<<(QDataStream &, const QMargins & /Constrained/) /ReleaseGIL/;
 QDataStream &operator>>(QDataStream &, QMargins & /Constrained/) /ReleaseGIL/;
@@ -111,3 +127,9 @@ QMarginsF operator/(const QMarginsF &lhs, qreal divisor);
 QMarginsF operator+(const QMarginsF &margins);
 QMarginsF operator-(const QMarginsF &margins);
 QMarginsF operator|(const QMarginsF &m1, const QMarginsF &m2);
+%If (Qt_6_8_0 -)
+bool qFuzzyCompare(const QMarginsF &lhs, const QMarginsF &rhs);
+%End
+%If (Qt_6_8_0 -)
+bool qFuzzyIsNull(const QMarginsF &m);
+%End

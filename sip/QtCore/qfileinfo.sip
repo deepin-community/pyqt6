@@ -33,8 +33,12 @@ public:
     QFileInfo(const QDir &dir, const QString &file);
     QFileInfo(const QFileInfo &fileinfo);
     ~QFileInfo();
+%If (- Qt_6_8_0)
     bool operator==(const QFileInfo &fileinfo) const;
+%End
+%If (- Qt_6_8_0)
     bool operator!=(const QFileInfo &fileinfo) const;
+%End
     void setFile(const QString &file);
     void setFile(const QFileDevice &file);
     void setFile(const QDir &dir, const QString &file);
@@ -120,3 +124,9 @@ public:
 };
 
 typedef QList<QFileInfo> QFileInfoList;
+%If (Qt_6_8_0 -)
+bool operator!=(const QFileInfo &lhs, const QFileInfo &rhs);
+%End
+%If (Qt_6_8_0 -)
+bool operator==(const QFileInfo &lhs, const QFileInfo &rhs);
+%End

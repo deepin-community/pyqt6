@@ -32,6 +32,9 @@ namespace QtSvg
     {
         NoOption,
         Tiny12FeaturesOnly,
+%If (Qt_6_8_0 -)
+        AssumeTrustedSource,
+%End
     };
 
     typedef QFlags<QtSvg::Option> Options;

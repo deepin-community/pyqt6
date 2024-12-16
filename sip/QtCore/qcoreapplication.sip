@@ -356,7 +356,7 @@ import datetime
 
 # Convenient type aliases.
 PYQT_SIGNAL = typing.Union[QtCore.pyqtSignal, QtCore.pyqtBoundSignal]
-PYQT_SLOT = typing.Union[typing.Callable[..., Any], QtCore.pyqtBoundSignal]
+PYQT_SLOT = typing.Union[collections.abc.Callable[..., Any], QtCore.pyqtBoundSignal]
 %End
 
 %TypeHintCode
@@ -367,15 +367,15 @@ import datetime
 # Support for new-style signals and slots.
 class pyqtSignal:
 
-    signatures = ...    # type: typing.Tuple[str, ...]
+    signatures = ...    # type: tuple[str, ...]
 
     def __init__(self, *types: typing.Any, name: str = ...) -> None: ...
 
     @typing.overload
-    def __get__(self, instance: None, owner: typing.Type['QObject']) -> 'pyqtSignal': ...
+    def __get__(self, instance: None, owner: type['QObject']) -> 'pyqtSignal': ...
 
     @typing.overload
-    def __get__(self, instance: 'QObject', owner: typing.Type['QObject']) -> 'pyqtBoundSignal': ...
+    def __get__(self, instance: 'QObject', owner: type['QObject']) -> 'pyqtBoundSignal': ...
 
 
 
@@ -396,8 +396,8 @@ class pyqtBoundSignal:
     def emit(self, *args: typing.Any) -> None: ...
 
 
-FuncT = typing.TypeVar('FuncT', bound=typing.Callable)
-def pyqtSlot(*types, name: typing.Optional[str] = ..., result: typing.Optional[str] = ...) -> typing.Callable[[FuncT], FuncT]: ...
+FuncT = typing.TypeVar('FuncT', bound=collections.abc.Callable)
+def pyqtSlot(*types, name: typing.Optional[str] = ..., result: typing.Optional[str] = ...) -> collections.abc.Callable[[FuncT], FuncT]: ...
 
 
 # For QObject.findChild() and QObject.findChildren().
@@ -406,5 +406,5 @@ QObjectT = typing.TypeVar('QObjectT', bound=QObject)
 
 # Convenient type aliases.
 PYQT_SIGNAL = typing.Union[pyqtSignal, pyqtBoundSignal]
-PYQT_SLOT = typing.Union[typing.Callable[..., Any], pyqtBoundSignal]
+PYQT_SLOT = typing.Union[collections.abc.Callable[..., Any], pyqtBoundSignal]
 %End

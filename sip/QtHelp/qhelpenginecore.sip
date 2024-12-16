@@ -34,13 +34,18 @@ class QHelpEngineCore : public QObject
     } graph[] = {
         {sipName_QHelpContentModel, &sipType_QHelpContentModel, -1, 1},
         {sipName_QHelpContentWidget, &sipType_QHelpContentWidget, -1, 2},
-        {sipName_QHelpEngineCore, &sipType_QHelpEngineCore, 10, 3},
+        {sipName_QHelpEngineCore, &sipType_QHelpEngineCore, 11, 3},
         {sipName_QHelpFilterEngine, &sipType_QHelpFilterEngine, -1, 4},
         {sipName_QHelpFilterSettingsWidget, &sipType_QHelpFilterSettingsWidget, -1, 5},
         {sipName_QHelpIndexModel, &sipType_QHelpIndexModel, -1, 6},
         {sipName_QHelpIndexWidget, &sipType_QHelpIndexWidget, -1, 7},
         {sipName_QHelpSearchEngine, &sipType_QHelpSearchEngine, -1, 8},
-        {sipName_QHelpSearchQueryWidget, &sipType_QHelpSearchQueryWidget, -1, 9},
+    #if QT_VERSION >= 0x060800
+        {sipName_QHelpSearchEngineCore, &sipType_QHelpSearchEngineCore, -1, 9},
+    #else
+        {0, 0, -1, 9},
+    #endif
+        {sipName_QHelpSearchQueryWidget, &sipType_QHelpSearchQueryWidget, -1, 10},
         {sipName_QHelpSearchResultWidget, &sipType_QHelpSearchResultWidget, -1, -1},
         {sipName_QHelpEngine, &sipType_QHelpEngine, -1, -1},
     };

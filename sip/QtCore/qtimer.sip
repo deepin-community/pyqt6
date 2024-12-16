@@ -80,4 +80,11 @@ public:
     void setTimerType(Qt::TimerType atype);
     Qt::TimerType timerType() const;
     int remainingTime() const;
+%If (Qt_6_8_0 -)
+    int id() const;
+%MethodCode
+        sipRes = qToUnderlying<Qt::TimerId>(sipCpp->id());
+%End
+
+%End
 };

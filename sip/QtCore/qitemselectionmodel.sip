@@ -43,8 +43,12 @@ public:
     bool contains(const QModelIndex &index) const;
     bool contains(int row, int column, const QModelIndex &parentIndex) const;
     bool intersects(const QItemSelectionRange &other) const;
+%If (- Qt_6_8_0)
     bool operator==(const QItemSelectionRange &other) const;
+%End
+%If (- Qt_6_8_0)
     bool operator!=(const QItemSelectionRange &other) const;
+%End
     bool isValid() const;
     QModelIndexList indexes() const;
     QItemSelectionRange intersected(const QItemSelectionRange &other) const;
@@ -261,3 +265,10 @@ int lastIndexOf(const QItemSelectionRange &value, int from = -1) const;
 QItemSelection &operator+=(const QItemSelection &other);
 QItemSelection &operator+=(const QItemSelectionRange &value);
 };
+
+%If (Qt_6_8_0 -)
+bool operator!=(const QItemSelectionRange &lhs, const QItemSelectionRange &rhs);
+%End
+%If (Qt_6_8_0 -)
+bool operator==(const QItemSelectionRange &lhs, const QItemSelectionRange &rhs);
+%End

@@ -22,7 +22,7 @@
 
 %Module(name=PyQt6.QtCore, call_super_init=True, default_VirtualErrorHandler=PyQt6, keyword_arguments="Optional", use_limited_api=True, py_ssize_t_clean=True)
 
-%Timeline {Qt_6_0_0 Qt_6_1_0 Qt_6_2_0 Qt_6_3_0 Qt_6_4_0 Qt_6_5_0 Qt_6_6_0 Qt_6_7_0}
+%Timeline {Qt_6_0_0 Qt_6_1_0 Qt_6_2_0 Qt_6_3_0 Qt_6_4_0 Qt_6_5_0 Qt_6_6_0 Qt_6_7_0 Qt_6_8_0}
 
 %Platforms {Android iOS Linux macOS WebAssembly Windows}
 
@@ -41,6 +41,7 @@
 %Feature PyQt_WebChannel
 %Feature PyQt_DTLS
 %Feature PyQt_Permissions
+%Feature PyQt_Vulkan
 
 %Copying
 Copyright (c) 2024 Riverbank Computing Limited <info@riverbankcomputing.com>
@@ -75,8 +76,8 @@ int PYQT_VERSION;
 const char *PYQT_VERSION_STR;
 
 %ModuleCode
-static int PYQT_VERSION = 0x060700;
-static const char *PYQT_VERSION_STR = "6.7.0";
+static int PYQT_VERSION = 0x060800;
+static const char *PYQT_VERSION_STR = "6.8.0";
 %End
 
 %Include qglobal.sip
@@ -99,6 +100,7 @@ static const char *PYQT_VERSION_STR = "6.7.0";
 %Include qcborcommon.sip
 %Include qcborstreamreader.sip
 %Include qcborstreamwriter.sip
+%Include qchar.sip
 %Include qcollator.sip
 %Include qcommandlineoption.sip
 %Include qcommandlineparser.sip
@@ -206,7 +208,6 @@ static const char *PYQT_VERSION_STR = "6.7.0";
 %Include qpycore_std_optional.sip
 %Include qpycore_qset.sip
 %Include qstringview.sip
-%Include qchar.sip
 %Include qpycore_qlist.sip
 %Include qwineventnotifier.sip
 %Include qstringlist.sip

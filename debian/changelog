@@ -1,3 +1,20 @@
+pyqt6 (6.8.0-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Bump required SIP to 6.9 and python3-pyqtbuild to 1.17.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Fri, 13 Dec 2024 23:21:08 +0300
+
+pyqt6 (6.7.1-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Bump required SIP version to 6.8.6.
+  * Bump required python3-pyqt6.sip version to 13.8.
+  * Update debian/copyright.
+  * Export LC_ALL=C.UTF-8 to fix warnings from qmake.
+
+ -- Dmitry Shachnev <mitya57@debian.org>  Sat, 27 Jul 2024 21:34:46 +0300
+
 pyqt6 (6.7.0-1) unstable; urgency=medium
 
   * New upstream release.

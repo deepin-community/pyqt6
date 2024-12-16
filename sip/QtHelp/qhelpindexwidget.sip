@@ -29,6 +29,9 @@ class QHelpIndexModel : public QStringListModel /NoDefaultCtors/
 public:
     QHelpEngineCore *helpEngine() const;
     void createIndex(const QString &customFilterName);
+%If (Qt_6_8_0 -)
+    void createIndexForCurrentFilter();
+%End
     QModelIndex filter(const QString &filter, const QString &wildcard = QString());
     bool isCreatingIndex() const;
 

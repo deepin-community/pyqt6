@@ -256,6 +256,13 @@ public:
     virtual ~QTimerEvent();
     int timerId() const;
     virtual QTimerEvent *clone() const /Factory/;
+%If (Qt_6_8_0 -)
+    int id() const;
+%MethodCode
+        sipRes = qToUnderlying<Qt::TimerId>(sipCpp->id());
+%End
+
+%End
 };
 
 class QChildEvent : public QEvent /NoDefaultCtors/

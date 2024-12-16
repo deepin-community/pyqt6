@@ -190,5 +190,15 @@ private:
     QMetaType(const QMetaType &);
 };
 
+%If (Qt_6_8_0 -)
+bool operator==(const QMetaType &lhs, const QMetaType &rhs);
+%End
+%If (- Qt_6_8_0)
 bool operator==(QMetaType a, QMetaType b);
+%End
+%If (Qt_6_8_0 -)
+bool operator!=(const QMetaType &lhs, const QMetaType &rhs);
+%End
+%If (- Qt_6_8_0)
 bool operator!=(QMetaType a, QMetaType b);
+%End
