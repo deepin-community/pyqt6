@@ -106,8 +106,12 @@ public:
 %End
     static QString escape(const QString &str);
     QStringList namedCaptureGroups() const;
+%If (- Qt_6_8_0)
     bool operator==(const QRegularExpression &re) const;
+%End
+%If (- Qt_6_8_0)
     bool operator!=(const QRegularExpression &re) const;
+%End
     void optimize() const;
     Py_hash_t __hash__() const;
 %MethodCode
@@ -152,19 +156,42 @@ public:
     bool isValid() const;
     int lastCapturedIndex() const;
     QString captured(int nth = 0) const;
+%If (- Qt_6_8_0)
     QString captured(const QString &name) const;
+%End
+%If (Qt_6_8_0 -)
+    QString captured(QAnyStringView name) const;
+%End
     QStringList capturedTexts() const;
+%If (- Qt_6_8_0)
     qsizetype capturedStart(QStringView name) const;
+%End
+%If (Qt_6_8_0 -)
+    qsizetype capturedStart(QAnyStringView name) const;
+%End
     qsizetype capturedStart(int nth = 0) const;
+%If (- Qt_6_8_0)
     qsizetype capturedLength(QStringView name) const;
+%End
+%If (Qt_6_8_0 -)
+    qsizetype capturedLength(QAnyStringView name) const;
+%End
     qsizetype capturedLength(int nth = 0) const;
+%If (- Qt_6_8_0)
     qsizetype capturedEnd(QStringView name) const;
+%End
+%If (Qt_6_8_0 -)
+    qsizetype capturedEnd(QAnyStringView name) const;
+%End
     qsizetype capturedEnd(int nth = 0) const;
 %If (Qt_6_3_0 -)
     bool hasCaptured(int nth) const;
 %End
-%If (Qt_6_3_0 -)
+%If (Qt_6_3_0 - Qt_6_8_0)
     bool hasCaptured(const QString &name) const;
+%End
+%If (Qt_6_8_0 -)
+    bool hasCaptured(QAnyStringView name) const;
 %End
 };
 
@@ -187,3 +214,10 @@ public:
     QRegularExpression::MatchType matchType() const;
     QRegularExpression::MatchOptions matchOptions() const;
 };
+
+%If (Qt_6_8_0 -)
+bool operator!=(const QRegularExpression &lhs, const QRegularExpression &rhs);
+%End
+%If (Qt_6_8_0 -)
+bool operator==(const QRegularExpression &lhs, const QRegularExpression &rhs);
+%End

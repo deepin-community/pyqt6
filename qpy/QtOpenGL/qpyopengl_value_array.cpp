@@ -169,64 +169,10 @@ static void *convert_values(Array *array, PyObject *values, GLenum gl_type,
         return 0;
     }
 
+    // If it is a buffer then the data will be an array of bytes that must be
+    // in the correct format (typically created with struct.pack()).
     if (rc > 0)
-    {
-        // Check the buffer is compatible with what we need.
-        GLenum array_type;
-
-        switch (*array->buffer.bi_format)
-        {
-        case 'b':
-            array_type = GL_BYTE;
-            break;
-
-        case 'B':
-            array_type = GL_UNSIGNED_BYTE;
-            break;
-
-        case 'h':
-            array_type = GL_SHORT;
-            break;
-
-        case 'H':
-            array_type = GL_UNSIGNED_SHORT;
-            break;
-
-        case 'i':
-            array_type = GL_INT;
-            break;
-
-        case 'I':
-            array_type = GL_UNSIGNED_INT;
-            break;
-
-        case 'f':
-            array_type = GL_FLOAT;
-            break;
-
-#if !defined(SIP_FEATURE_PyQt_OpenGL_ES2)
-        case 'd':
-            array_type = GL_DOUBLE;
-            break;
-#endif
-
-        default:
-            PyErr_Format(PyExc_TypeError, "unsupported buffer type '%s'",
-                    array->buffer.bi_format);
-            *estate = sipErrorFail;
-            return 0;
-        }
-
-        if (array_type != gl_type)
-        {
-            PyErr_SetString(PyExc_TypeError,
-                    "the buffer type is not the same as the array type");
-            *estate = sipErrorFail;
-            return 0;
-        }
-
         return array->buffer.bi_buf;
-    }
 
     PyObject *seq = PySequence_Fast(values,
             "array must be a sequence or a buffer");

@@ -20,6 +20,10 @@
 // WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
 
+// Qt v6.8 introduced QAbstractEventDispatcherV2 as a temporary class intended to
+// aid porting to Qt7 (where all timers will be based on std::chrono).  We choose
+// not to implement them as PyQt is likely to use Python ints anyway.
+
 class QAbstractEventDispatcher : public QObject /Abstract/
 {
 %TypeHeaderCode

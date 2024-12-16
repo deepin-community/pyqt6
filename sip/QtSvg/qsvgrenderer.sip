@@ -102,4 +102,7 @@ public:
 %If (Qt_6_7_0 -)
     void setAnimationEnabled(bool enable);
 %End
+%If (Qt_6_8_0 -)
+    static void setDefaultOptions(QtSvg::Options flags);
+%End
 };

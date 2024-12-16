@@ -8,8 +8,8 @@ Build-Depends: debhelper-compat (= 13),
                python-dbus-dev,
                python3-all-dev,
                python3-dbus,
-               python3-pyqtbuild (>= 1.15),
-               python3-sipbuild (>= 6.8),
+               python3-pyqtbuild (>= 1.17),
+               python3-sipbuild (>= 6.9),
                qt6-base-dev (>= 6.4.2+dfsg-12~),
                qt6-connectivity-dev [linux-any],
                qt6-declarative-dev,
@@ -26,7 +26,7 @@ Build-Depends: debhelper-compat (= 13),
                qt6-tools-dev,
                qt6-webchannel-dev,
                qt6-websockets-dev,
-               sip-tools (>= 6.8)
+               sip-tools (>= 6.9)
 Rules-Requires-Root: no
 Standards-Version: 4.7.0
 Homepage: https://riverbankcomputing.com/software/pyqt/intro
@@ -73,7 +73,7 @@ Description: D-Bus Qt main loop support for Python
 Package: python3-pyqt6
 Architecture: any
 Depends: python3-pyqt6.sip (<< 14),
-         python3-pyqt6.sip (>= 13.6),
+         python3-pyqt6.sip (>= 13.8),
          ${misc:Depends},
          ${python3:Depends},
          ${shlibs:Depends}

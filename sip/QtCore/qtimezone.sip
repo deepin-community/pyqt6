@@ -157,6 +157,9 @@ public:
 %If (Qt_6_6_0 -)
     static const int MaxUtcOffsetSecs;
 %End
+%If (Qt_6_8_0 -)
+    bool hasAlternativeName(QByteArrayView alias) const;
+%End
 };
 
 QDataStream &operator<<(QDataStream &ds, const QTimeZone &tz) /ReleaseGIL/;

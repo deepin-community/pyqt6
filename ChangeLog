@@ -1,3 +1,217 @@
+2024-12-04  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* NEWS:
+	Updated the NEWS file.
+	[80def5a26747] [6.8.0]
+
+2024-12-02  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* NEWS, test/metaobject/test_pyqtproperty.py:
+	Updated the tests to account for the meta-object fixes in Qt v6.8.1.
+	[338054985d31]
+
+2024-11-22  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* NEWS, PyQt6.msp:
+	Fixed the QDnsLookup.typeChanged() signal for Qt v6.8.
+	[cfc05a9f6986]
+
+2024-11-21  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* NEWS, PyQt6.msp:
+	Fixed the QNetworkInformation.reachabilityChanged() signal for Qt
+	v6.8. Fixed the QNetworkInformation.transportMediumChanged() signal
+	for Qt v6.7.
+	[345f687a2f3e]
+
+2024-10-21  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* config-tests/cfgtest_QtGui.cpp, qpy/QtGui/qpygui_vulkan.sip:
+	Fixed the Vulkan support on Linux.
+	[649ac26a3fd3]
+
+	* qpy/QtGui/qpygui_vulkan.sip:
+	Fixed an undefined type in the Vulkan support.
+	[6d307191525c]
+
+	* test/metaobject/test_pyqtproperty.py:
+	Updated the tests for Qt v6.8.0.
+	[8285838401b1]
+
+2024-10-19  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* NEWS, PyQt6.msp, config-tests/cfgtest_QtGui.cpp,
+	qpy/QtGui/qpygui_vulkan.sip:
+	Added QWindow.setVulkanInstance(), QWindow.vulkanInstance(),
+	QVulkanExtension, QVulkanInstance and QVulkanLayer.
+	[88406afe153a]
+
+	* qpy/QtOpenGL/qpyopengl_value_array.cpp:
+	Fixed PYQT_OPENGL_ARRAY and PYQT_OPENGL_BOUND_ARRAY when converting
+	from a buffer object.
+	[ad6569a16120]
+
+2024-10-14  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* pyproject.toml:
+	Updated the build system requirements to SIP v6.9 and PyQt-builder
+	v1.17.
+	[c711b031e0d0]
+
+	* PyQt6.msp:
+	Fixed a missed type hint change.
+	[c67928635135]
+
+	* PyQt6.msp:
+	Updated required type hints for PEP 585 compatibility.
+	[7b74e77311d8]
+
+2024-10-06  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* qpy/QtCore/qpycore_chimera.cpp, qpy/QtCore/qpycore_chimera.h,
+	qpy/QtCore/qpycore_enums_flags.cpp,
+	qpy/QtCore/qpycore_enums_flags.h,
+	qpy/QtCore/qpycore_enums_flags_metatype.cpp,
+	qpy/QtCore/qpycore_enums_flags_metatype.h,
+	qpy/QtCore/qpycore_qmetaobjectbuilder.h,
+	qpy/QtCore/qpycore_types.cpp:
+	User defined Python enums are now registered with their own meta-
+	type.
+	[2c9d82dd9c39]
+
+2024-10-04  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* PyQt6.msp:
+	Fixed regressions when building against versions of Qt prior to
+	v6.8.
+	[f285576aa2f6]
+
+2024-10-02  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* PyQt6.msp:
+	Fixed regressions when comparing QByteArray and Python strings.
+	[093669e2f673]
+
+	* PyQt6.msp:
+	Completed the updates for Qt v6.8.
+	[792d64838a77]
+
+	* PyQt6.msp:
+	Updated QtQuick and QtSvg for Qt v6.8.
+	[ac6429146ac5]
+
+	* NEWS, PyQt6.msp:
+	Updated QtNfc, QtPdf, QtSql and QtXml for Qt v6.8.
+	[3e5321920e20]
+
+2024-10-01  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* PyQt6.msp, mksccode/QtNetwork.versions:
+	Updated QtNetwork for Qt v6.8.
+	[e44b2fb13816]
+
+	* NEWS, PyQt6.msp, mksccode/QtMultimedia.versions:
+	Updated QtMultimedia for Qt v6.8.
+	[f29f6c2b7c79]
+
+	* PyQt6.msp, mksccode/QtHelp.versions:
+	Updated QtTest for Qt v6.8.
+	[e37a290a9fe5]
+
+	* NEWS, PyQt6.msp, qpy/QtCore/qchar.sip:
+	Completed the Qt v6.8 support for QtGui.
+	[fe905bc84e8d]
+
+2024-09-30  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* PyQt6.msp:
+	Updated QtGui for Qt v6.8.
+	[095e5bf71d7b]
+
+	* PyQt6.msp:
+	Updated QtTest for Qt v6.8.
+	[5b4c6a582aca]
+
+	* PyQt6.msp, project.py, qpy/QtCore/qbytearrayview.sip:
+	Completed the Qt v6.8 support for QtCore.
+	[757fca2e0e31]
+
+	* PyQt6.msp:
+	More work on QtCore for Qt v6.8.
+	[cf994cef28fb]
+
+	* PyQt6.msp, project.py:
+	Sufficient updates to QtCore for Qt v6.8 to allow it to compile.
+	[b4af57f5a89b]
+
+2024-09-29  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* Merged the 6.7-maint branch.
+	[b48fd9f4a7b3]
+
+2024-08-13  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* NEWS, PyQt6.msp:
+	Add /Transfer/ to all QNetworkAccessManager methods that return a
+	QNetworkReply.
+	[375b4a576754] <6.7-maint>
+
+2024-07-13  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* .hgtags:
+	Added tag 6.7.1 for changeset 910298597934
+	[36e0161a75d6] <6.7-maint>
+
+2024-07-07  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* PyQt6.msp:
+	Added /ReleaseGIL/ to the setSource() and setSourceDevice() methods
+	of QMediaPlayer to avoid a deadlock when using the ffmpeg backend.
+	[910298597934] [6.7.1] <6.7-maint>
+
+2024-07-01  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* qpy/QtQml/qpyqmlmodel.cpp, qpy/QtQml/qpyqmlmodel.h:
+	Added missing files to the repository.
+	[29a13d682f01] <6.7-maint>
+
+	* NEWS, project.py, pyproject.toml:
+	SIP v6.8.6 and PyQt6-sip v13.8 are now required for Python v3.13
+	support and for Linux on ARM.
+	[ac3d16987f8d] <6.7-maint>
+
+	* NEWS, qpy/QtQml/qpyqml_register_type.cpp,
+	qpy/QtQml/qpyqmlobject.cpp, qpy/QtQml/qpyqmlobject.h,
+	qpy/QtQml/qpyqmlvalidator.cpp:
+	Refactored the support for qml models to separate it from simple
+	objects.
+	[eb61a1dc0a2b] <6.7-maint>
+
+	* qpy/QtCore/qpycore_types.cpp:
+	Fixed a confusing comment.
+	[756b2ed96d7b] <6.7-maint>
+
+2024-06-29  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* NEWS, extras/designer/pluginloader.cpp,
+	extras/qmlscene/pluginloader.cpp:
+	The QML and Designer plugin loaders now use the modern
+	initialisation API.
+	[f04d37bf7419] <6.7-maint>
+
+2024-06-22  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* NEWS, extras/uic/enum_map.py, extras/uic/properties.py:
+	Fix pyuic to handle fully scoped enum names in .ui files created by
+	Qt v6.7.0.
+	[f0ab9eec4b70] <6.7-maint>
+
+2024-04-20  Phil Thompson  <phil@riverbankcomputing.com>
+
+	* .hgtags:
+	Added tag 6.7.0 for changeset 9ba237216b30
+	[f23656235645]
+
 2024-04-17  Phil Thompson  <phil@riverbankcomputing.com>
 
 	* NEWS, PyQt6.msp:

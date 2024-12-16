@@ -32,8 +32,12 @@ public:
     explicit QUrlQuery(const QString &queryString);
     QUrlQuery(const QUrlQuery &other);
     ~QUrlQuery();
+%If (- Qt_6_8_0)
     bool operator==(const QUrlQuery &other) const;
+%End
+%If (- Qt_6_8_0)
     bool operator!=(const QUrlQuery &other) const;
+%End
     void swap(QUrlQuery &other /Constrained/);
     bool isEmpty() const;
     bool isDetached() const;
@@ -67,3 +71,10 @@ public:
         sipRes = qHash(*sipCpp);
 %End
 };
+
+%If (Qt_6_8_0 -)
+bool operator!=(const QUrlQuery &lhs, const QUrlQuery &rhs);
+%End
+%If (Qt_6_8_0 -)
+bool operator==(const QUrlQuery &lhs, const QUrlQuery &rhs);
+%End

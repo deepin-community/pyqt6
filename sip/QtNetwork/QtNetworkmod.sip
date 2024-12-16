@@ -49,6 +49,7 @@ WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 %Include qabstractsocket.sip
 %Include qauthenticator.sip
 %Include qdnslookup.sip
+%Include qformdatabuilder.sip
 %Include qhostaddress.sip
 %Include qhostinfo.sip
 %Include qhstspolicy.sip
@@ -68,8 +69,11 @@ WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 %Include qnetworkproxy.sip
 %Include qnetworkreply.sip
 %Include qnetworkrequest.sip
+%Include qnetworkrequestfactory.sip
 %Include qocspresponse.sip
 %Include qpassworddigestor.sip
+%Include qrestaccessmanager.sip
+%Include qrestreply.sip
 %Include qssl.sip
 %Include qsslcertificate.sip
 %Include qsslcertificateextension.sip

@@ -82,4 +82,10 @@ public:
     void requestInterruption();
     bool isInterruptionRequested() const;
     int loopLevel() const;
+%If (Qt_6_8_0 -)
+    static bool isMainThread();
+%End
+%If (Qt_6_8_0 -)
+    bool isCurrentThread() const;
+%End
 };

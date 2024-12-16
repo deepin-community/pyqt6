@@ -89,4 +89,10 @@ protected:
 public:
     void setNumericalPrecisionPolicy(QSql::NumericalPrecisionPolicy precisionPolicy);
     QSql::NumericalPrecisionPolicy numericalPrecisionPolicy() const;
+%If (Qt_6_8_0 -)
+    bool moveToThread(QThread *targetThread);
+%End
+%If (Qt_6_8_0 -)
+    QThread *thread() const;
+%End
 };

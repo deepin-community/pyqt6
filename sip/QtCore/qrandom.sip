@@ -29,6 +29,9 @@ class QRandomGenerator
 public:
     QRandomGenerator(quint32 seed = 1);
     QRandomGenerator(const QRandomGenerator &other);
+%If (Qt_6_8_0 -)
+    ~QRandomGenerator();
+%End
     quint32 generate();
     quint64 generate64();
     double generateDouble();

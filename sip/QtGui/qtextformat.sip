@@ -235,6 +235,9 @@ public:
 %If (Qt_6_6_0 -)
         ListStart,
 %End
+%If (Qt_6_8_0 -)
+        ImageMaxWidth,
+%End
         UserProperty,
     };
 
@@ -524,6 +527,12 @@ public:
     void setWidth(qreal awidth);
     void setHeight(qreal aheight);
     void setQuality(int quality = 100);
+%If (Qt_6_8_0 -)
+    void setMaximumWidth(QTextLength maxWidth);
+%End
+%If (Qt_6_8_0 -)
+    QTextLength maximumWidth() const;
+%End
 };
 
 class QTextFrameFormat : public QTextFormat

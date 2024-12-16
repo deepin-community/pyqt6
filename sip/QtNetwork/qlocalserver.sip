@@ -49,6 +49,9 @@ signals:
 
 protected:
     virtual void incomingConnection(quintptr socketDescriptor);
+%If (Qt_6_8_0 -)
+    void addPendingConnection(QLocalSocket *socket);
+%End
 
 public:
     enum SocketOption /BaseType=Flag/

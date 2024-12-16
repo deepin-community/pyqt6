@@ -24,6 +24,7 @@
 
 #include "qpycore_chimera.h"
 #include "qpycore_enums_flags.h"
+#include "qpycore_enums_flags_metatype.h"
 #include "qpycore_misc.h"
 #include "qpycore_objectified_strings.h"
 
@@ -35,9 +36,11 @@ extern "C" {static PyObject *decorator(PyObject *, PyObject *enum_cls);}
 
 
 // Forward declarations.
-static bool add_key_value(EnumFlag &enum_flag, PyObject *key, PyObject *value);
+static bool add_key_value(EnumFlag &enum_flag, bool &unsigned_enum,
+        PyObject *key, PyObject *value);
 static bool objectify(const char *s, PyObject **objp);
-static bool parse_members(PyObject *members, EnumFlag &enum_flag);
+static bool parse_members(PyObject *members, EnumFlag &enum_flag,
+        bool &unsigned_enum);
 
 
 // The enums keyed by the enum type object.
@@ -105,7 +108,9 @@ static PyObject *decorator(PyObject *, PyObject *enum_cls)
     if (!members)
         return 0;
 
-    bool ok = parse_members(members, enum_flag);
+    bool ok, unsigned_enum = true;
+
+    ok = parse_members(members, enum_flag, unsigned_enum);
 
     Py_DECREF(members);
 
@@ -118,19 +123,23 @@ static PyObject *decorator(PyObject *, PyObject *enum_cls)
     if (!objectify("__qualname__", &qualname_s))
         return 0;
 
-    PyObject *qualname = PyObject_GetAttr(enum_cls, qualname_s);
-    if (!qualname)
+    PyObject *fq_py_name = PyObject_GetAttr(enum_cls, qualname_s);
+    if (!fq_py_name)
         return 0;
 
-    QByteArray cpp_qualname = qpycore_convert_ASCII(qualname);
-    Py_DECREF(qualname);
+    QByteArray fq_cpp_name = qpycore_convert_ASCII(fq_py_name);
+    Py_DECREF(fq_py_name);
 
-    cpp_qualname.replace(QByteArray("."), QByteArray("::"));
+    fq_cpp_name.replace(QByteArray("."), QByteArray("::"));
 
     // Register the enum with our type system.
-    Chimera::registerPyEnum(enum_cls, cpp_qualname);
+    Chimera::registerPyEnum(enum_cls, fq_cpp_name);
 
-    // Save the parsed enum for later.
+    // Register the enum with the Qt type system.
+    enum_flag.metaType = qpycore_register_enum_metatype(fq_cpp_name,
+            unsigned_enum);
+
+    // Save the parsed enum for when building the QMetaObject.
     Py_INCREF(enum_cls);
     enums_hash.insert(enum_cls, enum_flag);
 
@@ -141,7 +150,8 @@ static PyObject *decorator(PyObject *, PyObject *enum_cls)
 
 
 // Parse a __members__ mapping.
-static bool parse_members(PyObject *members, EnumFlag &enum_flag)
+static bool parse_members(PyObject *members, EnumFlag &enum_flag,
+        bool &unsigned_enum)
 {
     static PyObject *value_s = 0;
 
@@ -196,7 +206,7 @@ static bool parse_members(PyObject *members, EnumFlag &enum_flag)
             goto release_items;
         }
 
-        bool ok = add_key_value(enum_flag, key, value);
+        bool ok = add_key_value(enum_flag, unsigned_enum, key, value);
 
         Py_DECREF(key);
         Py_DECREF(value);
@@ -218,11 +228,15 @@ return_error:
 
 
 // Add a key/value to an enum/flag.
-static bool add_key_value(EnumFlag &enum_flag, PyObject *key, PyObject *value)
+static bool add_key_value(EnumFlag &enum_flag, bool &unsigned_enum,
+        PyObject *key, PyObject *value)
 {
     PyErr_Clear();
 
     int i_value = sipLong_AsInt(value);
+
+    if (i_value < 0)
+        unsigned_enum = false;
 
     if (PyErr_Occurred())
         return false;

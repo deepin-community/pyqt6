@@ -20,6 +20,10 @@
 // WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
 
+%ModuleCode
+#include <qpoint.h>
+%End
+
 class QPoint
 {
 %TypeHeaderCode
@@ -76,7 +80,19 @@ public:
 
 QDataStream &operator<<(QDataStream &, const QPoint &) /ReleaseGIL/;
 QDataStream &operator>>(QDataStream &, QPoint & /Constrained/) /ReleaseGIL/;
+%If (Qt_6_8_0 -)
+bool operator==(const QPointF &lhs, const QPoint &rhs);
+%End
+%If (Qt_6_8_0 -)
+bool operator==(const QPoint &lhs, const QPointF &rhs);
+%End
 bool operator==(const QPoint &p1, const QPoint &p2);
+%If (Qt_6_8_0 -)
+bool operator!=(const QPointF &lhs, const QPoint &rhs);
+%End
+%If (Qt_6_8_0 -)
+bool operator!=(const QPoint &lhs, const QPointF &rhs);
+%End
 bool operator!=(const QPoint &p1, const QPoint &p2);
 QPoint operator+(const QPoint &p);
 QPoint operator+(const QPoint &p1, const QPoint &p2);
@@ -152,3 +168,9 @@ QPointF operator-(const QPointF &p1, const QPointF &p2);
 QPointF operator*(const QPointF &p, qreal c);
 QPointF operator*(qreal c, const QPointF &p);
 QPointF operator/(const QPointF &p, qreal divisor);
+%If (Qt_6_8_0 -)
+bool qFuzzyCompare(const QPointF &p1, const QPointF &p2);
+%End
+%If (Qt_6_8_0 -)
+bool qFuzzyIsNull(const QPointF &point);
+%End

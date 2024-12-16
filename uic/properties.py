@@ -1,6 +1,6 @@
 #############################################################################
 ##
-## Copyright (C) 2023 Riverbank Computing Limited.
+## Copyright (C) 2024 Riverbank Computing Limited.
 ## Copyright (C) 2006 Thorsten Marek.
 ## All right reserved.
 ##
@@ -509,8 +509,11 @@ class Properties(object):
     def orientation(self, widget, prop):
         # If the class is a QFrame, it's a line.
         if widget.metaObject().className() == 'QFrame':
+            # Designer v6.7.0 and later use fully qualified enum names.
             widget.setFrameShape(
-                {'Qt::Horizontal': QtWidgets.QFrame.Shape.HLine,
+                {'Qt::Orientation::Horizontal': QtWidgets.QFrame.Shape.HLine,
+                 'Qt::Horizontal': QtWidgets.QFrame.Shape.HLine,
+                 'Qt::Orientation::Vertical'  : QtWidgets.QFrame.Shape.VLine,
                  'Qt::Vertical'  : QtWidgets.QFrame.Shape.VLine}[prop[0].text])
         else:
             widget.setOrientation(self._enum(prop[0]))

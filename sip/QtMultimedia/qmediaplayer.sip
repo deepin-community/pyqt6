@@ -97,8 +97,8 @@ public slots:
     void stop();
     void setPosition(qint64 position);
     void setPlaybackRate(qreal rate);
-    void setSource(const QUrl &source);
-    void setSourceDevice(QIODevice *device, const QUrl &sourceUrl = QUrl());
+    void setSource(const QUrl &source) /ReleaseGIL/;
+    void setSourceDevice(QIODevice *device, const QUrl &sourceUrl = QUrl()) /ReleaseGIL/;
 
 signals:
     void sourceChanged(const QUrl &media);
@@ -140,6 +140,19 @@ public:
 signals:
 %If (Qt_6_5_0 -)
     void playingChanged(bool playing);
+%End
+
+public:
+%If (Qt_6_8_0 -)
+    void setAudioBufferOutput(QAudioBufferOutput *output);
+%End
+%If (Qt_6_8_0 -)
+    QAudioBufferOutput *audioBufferOutput() const;
+%End
+
+signals:
+%If (Qt_6_8_0 -)
+    void audioBufferOutputChanged();
 %End
 };
 

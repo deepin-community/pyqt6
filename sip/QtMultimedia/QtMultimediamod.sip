@@ -50,6 +50,8 @@ WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 %Include qtvideo.sip
 %Include qaudio.sip
 %Include qaudiobuffer.sip
+%Include qaudiobufferinput.sip
+%Include qaudiobufferoutput.sip
 %Include qaudiodecoder.sip
 %Include qaudiodevice.sip
 %Include qaudioformat.sip
@@ -72,6 +74,7 @@ WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 %Include qsoundeffect.sip
 %Include qvideoframe.sip
 %Include qvideoframeformat.sip
+%Include qvideoframeinput.sip
 %Include qvideosink.sip
 %Include qwindowcapture.sip
 %Include qpymultimedia_qlist.sip

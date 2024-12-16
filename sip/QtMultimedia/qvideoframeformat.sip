@@ -170,6 +170,18 @@ public:
 %If (Qt_6_4_0 -)
     void setColorRange(QVideoFrameFormat::ColorRange range);
 %End
+%If (Qt_6_8_0 -)
+    qreal streamFrameRate() const;
+%End
+%If (Qt_6_8_0 -)
+    void setStreamFrameRate(qreal rate);
+%End
+%If (Qt_6_8_0 -)
+    QtVideo::Rotation rotation() const;
+%End
+%If (Qt_6_8_0 -)
+    void setRotation(QtVideo::Rotation rotation);
+%End
 };
 
 %End

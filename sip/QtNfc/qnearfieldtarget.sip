@@ -65,6 +65,9 @@ public:
         CommandError,
         ConnectionError,
         TimeoutError,
+%If (Qt_6_8_0 -)
+        UnsupportedTargetError,
+%End
     };
 
     class RequestId

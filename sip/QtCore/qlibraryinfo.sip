@@ -27,17 +27,6 @@ class QLibraryInfo
 %End
 
 public:
-    static bool isDebugBuild();
-%If (Qt_6_5_0 -)
-    static bool isSharedBuild();
-%End
-    static QString path(QLibraryInfo::LibraryPath p) /ReleaseGIL/;
-    static QVersionNumber version();
-
-private:
-    QLibraryInfo();
-
-public:
     enum LibraryPath
     {
         PrefixPath,
@@ -58,4 +47,17 @@ public:
         QmlImportsPath,
 %End
     };
+
+    static bool isDebugBuild();
+%If (Qt_6_5_0 -)
+    static bool isSharedBuild();
+%End
+    static QString path(QLibraryInfo::LibraryPath p) /ReleaseGIL/;
+    static QVersionNumber version();
+%If (Qt_6_8_0 -)
+    static QStringList paths(QLibraryInfo::LibraryPath p) /ReleaseGIL/;
+%End
+
+private:
+    QLibraryInfo();
 };

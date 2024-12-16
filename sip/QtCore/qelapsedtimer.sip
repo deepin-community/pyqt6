@@ -55,3 +55,12 @@ public:
 bool operator<(const QElapsedTimer &v1, const QElapsedTimer &v2);
 bool operator==(const QElapsedTimer &lhs, const QElapsedTimer &rhs);
 bool operator!=(const QElapsedTimer &lhs, const QElapsedTimer &rhs);
+%If (Qt_6_8_0 -)
+bool operator>(const QElapsedTimer &lhs, const QElapsedTimer &rhs);
+%End
+%If (Qt_6_8_0 -)
+bool operator<=(const QElapsedTimer &lhs, const QElapsedTimer &rhs);
+%End
+%If (Qt_6_8_0 -)
+bool operator>=(const QElapsedTimer &lhs, const QElapsedTimer &rhs);
+%End

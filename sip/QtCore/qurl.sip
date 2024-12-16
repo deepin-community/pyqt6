@@ -131,9 +131,15 @@ public:
 %End
     void detach();
     bool isDetached() const;
+%If (- Qt_6_8_0)
     bool operator<(const QUrl &url) const;
+%End
+%If (- Qt_6_8_0)
     bool operator==(const QUrl &url) const;
+%End
+%If (- Qt_6_8_0)
     bool operator!=(const QUrl &url) const;
+%End
     static QString fromPercentEncoding(const QByteArray &);
     static QByteArray toPercentEncoding(const QString &input, const QByteArray &exclude = QByteArray(), const QByteArray &include = QByteArray());
     bool hasQuery() const;
@@ -190,3 +196,21 @@ public:
 
 QDataStream &operator<<(QDataStream &, const QUrl &) /ReleaseGIL/;
 QDataStream &operator>>(QDataStream &, QUrl & /Constrained/) /ReleaseGIL/;
+%If (Qt_6_8_0 -)
+bool operator>=(const QUrl &lhs, const QUrl &rhs);
+%End
+%If (Qt_6_8_0 -)
+bool operator<=(const QUrl &lhs, const QUrl &rhs);
+%End
+%If (Qt_6_8_0 -)
+bool operator>(const QUrl &lhs, const QUrl &rhs);
+%End
+%If (Qt_6_8_0 -)
+bool operator<(const QUrl &lhs, const QUrl &rhs);
+%End
+%If (Qt_6_8_0 -)
+bool operator!=(const QUrl &lhs, const QUrl &rhs);
+%End
+%If (Qt_6_8_0 -)
+bool operator==(const QUrl &lhs, const QUrl &rhs);
+%End

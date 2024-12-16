@@ -35,6 +35,9 @@ public:
         PdfVersion_1_4,
         PdfVersion_A1b,
         PdfVersion_1_6,
+%If (Qt_6_8_0 -)
+        PdfVersion_X4,
+%End
     };
 
     virtual bool setPageSize(const QPageSize &pageSize);

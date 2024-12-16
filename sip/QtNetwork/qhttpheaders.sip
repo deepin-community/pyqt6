@@ -240,6 +240,12 @@ public:
     static QByteArrayView wellKnownHeaderName(QHttpHeaders::WellKnownHeader name);
     static QHttpHeaders fromListOfPairs(const QList<std::pair<QByteArray, QByteArray>> &headers);
     QList<std::pair<QByteArray, QByteArray>> toListOfPairs() const;
+%If (Qt_6_8_0 -)
+    bool replaceOrAppend(QHttpHeaders::WellKnownHeader name, QAnyStringView newValue);
+%End
+%If (Qt_6_8_0 -)
+    bool replaceOrAppend(QAnyStringView name, QAnyStringView newValue);
+%End
 };
 
 %End

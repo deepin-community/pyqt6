@@ -47,7 +47,7 @@ Files: uic/Compiler/indenter.py
        uic/objcreator.py
        uic/properties.py
 Copyright: 2006,      Thorsten Marek
-           2014-2023, Riverbank Computing Limited
+           2014-2024, Riverbank Computing Limited
 License: GPL-2 or BSD-3-clause
 
 Files: uic/Compiler/compiler.py

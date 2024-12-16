@@ -33,6 +33,9 @@ public:
         FilePathRole,
         FileNameRole,
         FilePermissions,
+%If (Qt_6_8_0 -)
+        FileInfoRole,
+%End
     };
 
     explicit QFileSystemModel(QObject *parent /TransferThis/ = 0);

@@ -28,6 +28,7 @@
 #include <QQmlPropertyValueSource>
 
 #include "qpyqml_api.h"
+#include "qpyqmlmodel.h"
 #include "qpyqmlobject.h"
 #include "qpyqmlvalidator.h"
 
@@ -44,13 +45,17 @@ static void complete_init(QQmlPrivate::RegisterType *rt);
 static int register_type(QQmlPrivate::RegisterType *rt);
 
 
-// The registration data for the QValidator proxy types.
-const int NrOfQValidatorTypes = 10;
-static QQmlPrivate::RegisterType validator_proxy_types[NrOfQValidatorTypes];
+// The registration data for the QAbstractItemModel proxy types.
+const int NrOfModelTypes = 60;
+static QQmlPrivate::RegisterType model_proxy_types[NrOfModelTypes];
 
-// The registration data for the QObject/QAbstractItemModel proxy types.
-const int NrOfQObjectTypes = 60;
-static QQmlPrivate::RegisterType object_proxy_types[NrOfQObjectTypes];
+// The registration data for the QObject proxy types.
+const int NrOfObjectTypes = 60;
+static QQmlPrivate::RegisterType object_proxy_types[NrOfObjectTypes];
+
+// The registration data for the QValidator proxy types.
+const int NrOfValidatorTypes = 10;
+static QQmlPrivate::RegisterType validator_proxy_types[NrOfValidatorTypes];
 
 
 // Register an anonymous Python type.
@@ -228,20 +233,25 @@ static QQmlPrivate::RegisterType *init_type(PyTypeObject *py_type, bool ctor,
 
     // Initialise the specific type.
 
-    static const sipTypeDef *qvalidator_td = 0;
+    static const sipTypeDef *model_td = 0;
 
-    if (!qvalidator_td)
-        qvalidator_td = sipFindType("QValidator");
+    if (!model_td)
+        model_td = sipFindType("QAbstractItemModel");
 
-    if (qvalidator_td && PyType_IsSubtype(py_type, sipTypeAsPyTypeObject(qvalidator_td)))
+    static const sipTypeDef *validator_td = 0;
+
+    if (!validator_td)
+        validator_td = sipFindType("QValidator");
+
+    if (validator_td && PyType_IsSubtype(py_type, sipTypeAsPyTypeObject(validator_td)))
     {
         int type_nr = QPyQmlValidatorProxy::addType(py_type);
 
-        if (type_nr >= NrOfQValidatorTypes)
+        if (type_nr >= NrOfValidatorTypes)
         {
             PyErr_Format(PyExc_TypeError,
                     "a maximum of %d QValidator types may be registered with QML",
-                    NrOfQValidatorTypes);
+                    NrOfValidatorTypes);
             return 0;
         }
 
@@ -262,15 +272,94 @@ static QQmlPrivate::RegisterType *init_type(PyTypeObject *py_type, bool ctor,
             QPYQML_TYPE_INIT(Validator, 9);
         }
     }
+    else if (model_td && PyType_IsSubtype(py_type, sipTypeAsPyTypeObject(model_td)))
+    {
+        int type_nr = QPyQmlModelProxy::addType(py_type);
+
+        if (type_nr >= NrOfModelTypes)
+        {
+            PyErr_Format(PyExc_TypeError,
+                    "a maximum of %d QAbstractItemModel types may be registered with QML",
+                    NrOfModelTypes);
+            return 0;
+        }
+
+        rt = &model_proxy_types[type_nr];
+
+        // Initialise those members that depend on the C++ type.
+        switch (type_nr)
+        {
+            QPYQML_TYPE_INIT(Model, 0);
+            QPYQML_TYPE_INIT(Model, 1);
+            QPYQML_TYPE_INIT(Model, 2);
+            QPYQML_TYPE_INIT(Model, 3);
+            QPYQML_TYPE_INIT(Model, 4);
+            QPYQML_TYPE_INIT(Model, 5);
+            QPYQML_TYPE_INIT(Model, 6);
+            QPYQML_TYPE_INIT(Model, 7);
+            QPYQML_TYPE_INIT(Model, 8);
+            QPYQML_TYPE_INIT(Model, 9);
+            QPYQML_TYPE_INIT(Model, 10);
+            QPYQML_TYPE_INIT(Model, 11);
+            QPYQML_TYPE_INIT(Model, 12);
+            QPYQML_TYPE_INIT(Model, 13);
+            QPYQML_TYPE_INIT(Model, 14);
+            QPYQML_TYPE_INIT(Model, 15);
+            QPYQML_TYPE_INIT(Model, 16);
+            QPYQML_TYPE_INIT(Model, 17);
+            QPYQML_TYPE_INIT(Model, 18);
+            QPYQML_TYPE_INIT(Model, 19);
+            QPYQML_TYPE_INIT(Model, 20);
+            QPYQML_TYPE_INIT(Model, 21);
+            QPYQML_TYPE_INIT(Model, 22);
+            QPYQML_TYPE_INIT(Model, 23);
+            QPYQML_TYPE_INIT(Model, 24);
+            QPYQML_TYPE_INIT(Model, 25);
+            QPYQML_TYPE_INIT(Model, 26);
+            QPYQML_TYPE_INIT(Model, 27);
+            QPYQML_TYPE_INIT(Model, 28);
+            QPYQML_TYPE_INIT(Model, 29);
+            QPYQML_TYPE_INIT(Model, 30);
+            QPYQML_TYPE_INIT(Model, 31);
+            QPYQML_TYPE_INIT(Model, 32);
+            QPYQML_TYPE_INIT(Model, 33);
+            QPYQML_TYPE_INIT(Model, 34);
+            QPYQML_TYPE_INIT(Model, 35);
+            QPYQML_TYPE_INIT(Model, 36);
+            QPYQML_TYPE_INIT(Model, 37);
+            QPYQML_TYPE_INIT(Model, 38);
+            QPYQML_TYPE_INIT(Model, 39);
+            QPYQML_TYPE_INIT(Model, 40);
+            QPYQML_TYPE_INIT(Model, 41);
+            QPYQML_TYPE_INIT(Model, 42);
+            QPYQML_TYPE_INIT(Model, 43);
+            QPYQML_TYPE_INIT(Model, 44);
+            QPYQML_TYPE_INIT(Model, 45);
+            QPYQML_TYPE_INIT(Model, 46);
+            QPYQML_TYPE_INIT(Model, 47);
+            QPYQML_TYPE_INIT(Model, 48);
+            QPYQML_TYPE_INIT(Model, 49);
+            QPYQML_TYPE_INIT(Model, 50);
+            QPYQML_TYPE_INIT(Model, 51);
+            QPYQML_TYPE_INIT(Model, 52);
+            QPYQML_TYPE_INIT(Model, 53);
+            QPYQML_TYPE_INIT(Model, 54);
+            QPYQML_TYPE_INIT(Model, 55);
+            QPYQML_TYPE_INIT(Model, 56);
+            QPYQML_TYPE_INIT(Model, 57);
+            QPYQML_TYPE_INIT(Model, 58);
+            QPYQML_TYPE_INIT(Model, 59);
+        }
+    }
     else
     {
         int type_nr = QPyQmlObjectProxy::addType(py_type);
 
-        if (type_nr >= NrOfQObjectTypes)
+        if (type_nr >= NrOfObjectTypes)
         {
             PyErr_Format(PyExc_TypeError,
-                    "a maximum of %d types may be registered with QML",
-                    NrOfQObjectTypes);
+                    "a maximum of %d QObject types may be registered with QML",
+                    NrOfObjectTypes);
             return 0;
         }
 
@@ -373,6 +462,16 @@ QObject *qpyqml_find_proxy_for(QObject *proxied)
     while (oit.hasNext())
     {
         QPyQmlObjectProxy *proxy = static_cast<QPyQmlObjectProxy *>(oit.next());
+
+        if (proxy->proxied.data() == proxied)
+            return proxy;
+    }
+
+    QSetIterator<QObject *> mit(QPyQmlModelProxy::proxies);
+
+    while (mit.hasNext())
+    {
+        QPyQmlModelProxy *proxy = static_cast<QPyQmlModelProxy *>(mit.next());
 
         if (proxy->proxied.data() == proxied)
             return proxy;

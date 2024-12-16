@@ -31,8 +31,12 @@ public:
     QMimeType(const QMimeType &other);
     ~QMimeType();
     void swap(QMimeType &other /Constrained/);
+%If (- Qt_6_8_0)
     bool operator==(const QMimeType &other) const;
+%End
+%If (- Qt_6_8_0)
     bool operator!=(const QMimeType &other) const;
+%End
     bool isValid() const;
     bool isDefault() const;
     QString name() const;
@@ -52,3 +56,10 @@ public:
         sipRes = qHash(*sipCpp);
 %End
 };
+
+%If (Qt_6_8_0 -)
+bool operator!=(const QMimeType &lhs, const QMimeType &rhs);
+%End
+%If (Qt_6_8_0 -)
+bool operator==(const QMimeType &lhs, const QMimeType &rhs);
+%End

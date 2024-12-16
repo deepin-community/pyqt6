@@ -51,8 +51,12 @@ public:
     // This was changed to be a global operator in Qt v6.7 but this isn't supported by SIP v6.8.
     QBitArray operator~() const;
 %End
+%If (- Qt_6_8_0)
     bool operator==(const QBitArray &a) const;
+%End
+%If (- Qt_6_8_0)
     bool operator!=(const QBitArray &a) const;
+%End
     void fill(bool val, qsizetype first, qsizetype last);
     bool fill(bool val, qsizetype size = -1);
     void truncate(qsizetype pos);
@@ -83,3 +87,9 @@ QBitArray operator|(const QBitArray &, const QBitArray &);
 QBitArray operator^(const QBitArray &, const QBitArray &);
 QDataStream &operator<<(QDataStream &, const QBitArray &) /ReleaseGIL/;
 QDataStream &operator>>(QDataStream &, QBitArray & /Constrained/) /ReleaseGIL/;
+%If (Qt_6_8_0 -)
+bool operator!=(const QBitArray &lhs, const QBitArray &rhs);
+%End
+%If (Qt_6_8_0 -)
+bool operator==(const QBitArray &lhs, const QBitArray &rhs);
+%End

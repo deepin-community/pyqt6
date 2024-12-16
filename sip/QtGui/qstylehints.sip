@@ -95,6 +95,25 @@ signals:
     void colorSchemeChanged(Qt::ColorScheme colorScheme);
 %End
 
+public:
+%If (Qt_6_8_0 -)
+    Qt::ContextMenuTrigger contextMenuTrigger() const;
+%End
+%If (Qt_6_8_0 -)
+    void setContextMenuTrigger(Qt::ContextMenuTrigger contextMenuTrigger);
+%End
+%If (Qt_6_8_0 -)
+    void setColorScheme(Qt::ColorScheme scheme);
+%End
+%If (Qt_6_8_0 -)
+    void unsetColorScheme();
+%End
+
+signals:
+%If (Qt_6_8_0 -)
+    void contextMenuTriggerChanged(Qt::ContextMenuTrigger contextMenuTrigger);
+%End
+
 private:
     QStyleHints();
 };

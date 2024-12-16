@@ -48,4 +48,33 @@ public:
     void setDocumentXmpMetadata(const QByteArray &xmpMetadata);
     QByteArray documentXmpMetadata() const;
     void addFileAttachment(const QString &fileName, const QByteArray &data, const QString &mimeType = QString());
+%If (Qt_6_8_0 -)
+    QUuid documentId() const;
+%End
+%If (Qt_6_8_0 -)
+    void setDocumentId(QUuid documentId);
+%End
+%If (Qt_6_8_0 -)
+
+    enum class ColorModel
+    {
+        RGB,
+        Grayscale,
+        CMYK,
+        Auto,
+    };
+
+%End
+%If (Qt_6_8_0 -)
+    QPdfWriter::ColorModel colorModel() const;
+%End
+%If (Qt_6_8_0 -)
+    void setColorModel(QPdfWriter::ColorModel model);
+%End
+%If (Qt_6_8_0 -)
+    QPdfOutputIntent outputIntent() const;
+%End
+%If (Qt_6_8_0 -)
+    void setOutputIntent(const QPdfOutputIntent &intent);
+%End
 };

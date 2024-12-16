@@ -80,8 +80,12 @@ public:
     QJsonArray array() const;
     void setObject(const QJsonObject &object);
     void setArray(const QJsonArray &array);
+%If (- Qt_6_8_0)
     bool operator==(const QJsonDocument &other) const;
+%End
+%If (- Qt_6_8_0)
     bool operator!=(const QJsonDocument &other) const;
+%End
     bool isNull() const;
     void swap(QJsonDocument &other /Constrained/);
     const QJsonValue operator[](qsizetype i) const;
@@ -90,3 +94,9 @@ public:
 
 QDataStream &operator<<(QDataStream &, const QJsonDocument & /Constrained/) /ReleaseGIL/;
 QDataStream &operator>>(QDataStream &, QJsonDocument & /Constrained/) /ReleaseGIL/;
+%If (Qt_6_8_0 -)
+bool operator!=(const QJsonDocument &lhs, const QJsonDocument &rhs);
+%End
+%If (Qt_6_8_0 -)
+bool operator==(const QJsonDocument &lhs, const QJsonDocument &rhs);
+%End

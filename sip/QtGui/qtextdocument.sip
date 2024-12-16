@@ -62,6 +62,9 @@ public:
 %If (Qt_6_3_0 -)
         CssMedia,
 %End
+%If (Qt_6_8_0 -)
+        FrontMatter,
+%End
     };
 
     void setMetaInformation(QTextDocument::MetaInformation info, const QString &);

@@ -101,6 +101,18 @@ public:
 
     static QFont systemFont(QFontDatabase::SystemFont type);
     static bool isPrivateFamily(const QString &family);
+%If (Qt_6_8_0 -)
+    static void addApplicationFallbackFontFamily(QChar::Script script, const QString &familyName);
+%End
+%If (Qt_6_8_0 -)
+    static bool removeApplicationFallbackFontFamily(QChar::Script script, const QString &familyName);
+%End
+%If (Qt_6_8_0 -)
+    static void setApplicationFallbackFontFamilies(QChar::Script, const QStringList &familyNames);
+%End
+%If (Qt_6_8_0 -)
+    static QStringList applicationFallbackFontFamilies(QChar::Script script);
+%End
 
 private:
     QFontDatabase();

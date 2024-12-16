@@ -79,6 +79,12 @@ public:
     QList<QByteArray> rawHeaderList() const;
     QByteArray rawHeader(const QByteArray &headerName) const;
     void setRawHeader(const QByteArray &headerName, const QByteArray &value);
+%If (Qt_6_8_0 -)
+    QHttpHeaders headers() const;
+%End
+%If (Qt_6_8_0 -)
+    void setHeaders(const QHttpHeaders &newHeaders);
+%End
 };
 
 class QNetworkProxyQuery

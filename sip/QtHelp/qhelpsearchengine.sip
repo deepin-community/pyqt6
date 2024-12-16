@@ -73,6 +73,8 @@ public slots:
     void search(const QString &searchInput);
 };
 
+%If (- Qt_6_8_0)
+
 class QHelpSearchResult
 {
 %TypeHeaderCode
@@ -88,3 +90,5 @@ public:
     QUrl url() const;
     QString snippet() const;
 };
+
+%End

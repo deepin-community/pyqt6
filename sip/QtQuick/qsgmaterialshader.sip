@@ -86,6 +86,19 @@ public:
             OneMinusSrc1Alpha,
         };
 
+%If (Qt_6_8_0 -)
+
+        enum class BlendOp
+        {
+            Add,
+            Subtract,
+            ReverseSubtract,
+            Min,
+            Max,
+        };
+
+%End
+
         enum ColorMaskComponent /BaseType=Flag/
         {
             R,
@@ -124,12 +137,18 @@ public:
         QSGMaterialShader::GraphicsPipelineState::PolygonMode polygonMode;
 %End
 %If (Qt_6_5_0 -)
-        bool separateBlendFactors;
-%End
-%If (Qt_6_5_0 -)
         QSGMaterialShader::GraphicsPipelineState::BlendFactor srcAlpha;
 %End
         QSGMaterialShader::GraphicsPipelineState::BlendFactor srcColor;
+%If (Qt_6_8_0 -)
+        QSGMaterialShader::GraphicsPipelineState::BlendOp opAlpha;
+%End
+%If (Qt_6_8_0 -)
+        QSGMaterialShader::GraphicsPipelineState::BlendOp opColor;
+%End
+%If (Qt_6_5_0 -)
+        bool separateBlendFactors;
+%End
     };
 
     enum Flag /BaseType=Flag/
@@ -159,6 +178,9 @@ public:
 
 protected:
     void setShaderFileName(QSGMaterialShader::Stage stage, const QString &filename);
+%If (Qt_6_8_0 -)
+    void setShaderFileName(QSGMaterialShader::Stage stage, const QString &filename, int viewCount);
+%End
 
 private:
     QSGMaterialShader(const QSGMaterialShader &);

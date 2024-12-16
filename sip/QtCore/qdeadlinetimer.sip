@@ -66,12 +66,42 @@ public:
     QDeadlineTimer &operator-=(qint64 msecs);
 };
 
+%If (Qt_6_8_0 -)
+bool operator==(const QDeadlineTimer &lhs, const QDeadlineTimer &rhs);
+%End
+%If (- Qt_6_8_0)
 bool operator==(QDeadlineTimer d1, QDeadlineTimer d2);
+%End
+%If (Qt_6_8_0 -)
+bool operator!=(const QDeadlineTimer &lhs, const QDeadlineTimer &rhs);
+%End
+%If (- Qt_6_8_0)
 bool operator!=(QDeadlineTimer d1, QDeadlineTimer d2);
+%End
+%If (Qt_6_8_0 -)
+bool operator<(const QDeadlineTimer &lhs, const QDeadlineTimer &rhs);
+%End
+%If (- Qt_6_8_0)
 bool operator<(QDeadlineTimer d1, QDeadlineTimer d2);
+%End
+%If (Qt_6_8_0 -)
+bool operator<=(const QDeadlineTimer &lhs, const QDeadlineTimer &rhs);
+%End
+%If (- Qt_6_8_0)
 bool operator<=(QDeadlineTimer d1, QDeadlineTimer d2);
+%End
+%If (Qt_6_8_0 -)
+bool operator>(const QDeadlineTimer &lhs, const QDeadlineTimer &rhs);
+%End
+%If (- Qt_6_8_0)
 bool operator>(QDeadlineTimer d1, QDeadlineTimer d2);
+%End
+%If (Qt_6_8_0 -)
+bool operator>=(const QDeadlineTimer &lhs, const QDeadlineTimer &rhs);
+%End
+%If (- Qt_6_8_0)
 bool operator>=(QDeadlineTimer d1, QDeadlineTimer d2);
+%End
 QDeadlineTimer operator+(QDeadlineTimer dt, qint64 msecs);
 QDeadlineTimer operator+(qint64 msecs, QDeadlineTimer dt);
 QDeadlineTimer operator-(QDeadlineTimer dt, qint64 msecs);

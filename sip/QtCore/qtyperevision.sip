@@ -50,22 +50,40 @@ public:
 };
 
 %End
-%If (Qt_6_7_0 -)
+%If (Qt_6_8_0 -)
+bool operator==(const QTypeRevision &lhs, const QTypeRevision &rhs);
+%End
+%If (Qt_6_7_0 - Qt_6_8_0)
 bool operator==(QTypeRevision lhs, QTypeRevision rhs);
 %End
-%If (Qt_6_7_0 -)
+%If (Qt_6_8_0 -)
+bool operator!=(const QTypeRevision &lhs, const QTypeRevision &rhs);
+%End
+%If (Qt_6_7_0 - Qt_6_8_0)
 bool operator!=(QTypeRevision lhs, QTypeRevision rhs);
 %End
-%If (Qt_6_7_0 -)
+%If (Qt_6_8_0 -)
+bool operator<(const QTypeRevision &lhs, const QTypeRevision &rhs);
+%End
+%If (Qt_6_7_0 - Qt_6_8_0)
 bool operator<(QTypeRevision lhs, QTypeRevision rhs);
 %End
-%If (Qt_6_7_0 -)
+%If (Qt_6_8_0 -)
+bool operator>(const QTypeRevision &lhs, const QTypeRevision &rhs);
+%End
+%If (Qt_6_7_0 - Qt_6_8_0)
 bool operator>(QTypeRevision lhs, QTypeRevision rhs);
 %End
-%If (Qt_6_7_0 -)
+%If (Qt_6_8_0 -)
+bool operator<=(const QTypeRevision &lhs, const QTypeRevision &rhs);
+%End
+%If (Qt_6_7_0 - Qt_6_8_0)
 bool operator<=(QTypeRevision lhs, QTypeRevision rhs);
 %End
-%If (Qt_6_7_0 -)
+%If (Qt_6_8_0 -)
+bool operator>=(const QTypeRevision &lhs, const QTypeRevision &rhs);
+%End
+%If (Qt_6_7_0 - Qt_6_8_0)
 bool operator>=(QTypeRevision lhs, QTypeRevision rhs);
 %End
 %If (Qt_6_7_0 -)

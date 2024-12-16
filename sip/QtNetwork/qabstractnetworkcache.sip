@@ -49,6 +49,12 @@ public:
     QNetworkCacheMetaData::AttributesMap attributes() const;
     void setAttributes(const QNetworkCacheMetaData::AttributesMap &attributes);
     void swap(QNetworkCacheMetaData &other /Constrained/);
+%If (Qt_6_8_0 -)
+    QHttpHeaders headers() const;
+%End
+%If (Qt_6_8_0 -)
+    void setHeaders(const QHttpHeaders &headers);
+%End
 };
 
 QDataStream &operator<<(QDataStream &, const QNetworkCacheMetaData & /Constrained/) /ReleaseGIL/;

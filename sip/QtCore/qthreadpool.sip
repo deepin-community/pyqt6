@@ -122,6 +122,9 @@ public:
     int activeThreadCount() const /ReleaseGIL/;
     void reserveThread() /ReleaseGIL/;
     void releaseThread() /ReleaseGIL/;
+%If (Qt_6_8_0 -)
+    bool waitForDone(QDeadlineTimer deadline) /ReleaseGIL/ [bool (QDeadlineTimer deadline = QDeadlineTimer::Forever)];
+%End
     bool waitForDone(int msecs = -1) /ReleaseGIL/;
     void clear() /ReleaseGIL/;
     void setStackSize(uint stackSize);

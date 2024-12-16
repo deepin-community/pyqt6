@@ -92,6 +92,7 @@ WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 %Include qpainter.sip
 %Include qpainterpath.sip
 %Include qpalette.sip
+%Include qpdfoutputintent.sip
 %Include qpdfwriter.sip
 %Include qpen.sip
 %Include qpicture.sip
@@ -134,4 +135,5 @@ WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 %Include qwindow.sip
 %Include qwindowdefs.sip
 %Include qpygui_qlist.sip
+%Include qpygui_vulkan.sip
 %Include opengl_types.sip

@@ -24,6 +24,7 @@
 
 #include <QByteArray>
 #include <QList>
+#include <QMetaType>
 #include <QPair>
 
 
@@ -32,6 +33,7 @@ struct EnumFlag
 {
     QByteArray name;
     bool isFlag;
+    QMetaType metaType;
     QList<QPair<QByteArray, int> > keys;
 };
 

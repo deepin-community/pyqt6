@@ -90,7 +90,12 @@ class QStringEncoder : public QStringConverter
 public:
     QStringEncoder();
     QStringEncoder(QStringConverter::Encoding encoding, QStringConverterBase::Flags flags = QStringConverterBase::Flag::Default);
+%If (Qt_6_8_0 -)
+    QStringEncoder(QAnyStringView name, QStringConverterBase::Flags flags = QStringConverterBase::Flag::Default);
+%End
+%If (- Qt_6_8_0)
     QStringEncoder(const char *name, QStringConverterBase::Flags flags = QStringConverterBase::Flag::Default);
+%End
     QByteArray operator()(QStringView in) [QStringEncoder::DecodedData<QStringView> (QStringView in)];
     QByteArray encode(QStringView in) [QStringEncoder::DecodedData<QStringView> (QStringView in)];
 };
@@ -102,9 +107,14 @@ class QStringDecoder : public QStringConverter
 %End
 
 public:
-    QStringDecoder(QStringConverter::Encoding encoding, QStringConverterBase::Flags flags = QStringConverterBase::Flag::Default);
     QStringDecoder();
+    QStringDecoder(QStringConverter::Encoding encoding, QStringConverterBase::Flags flags = QStringConverterBase::Flag::Default);
+%If (Qt_6_8_0 -)
+    QStringDecoder(QAnyStringView name, QStringConverterBase::Flags flags = QStringConverterBase::Flag::Default);
+%End
+%If (- Qt_6_8_0)
     QStringDecoder(const char *name, QStringConverterBase::Flags flags = QStringConverterBase::Flag::Default);
+%End
     QString operator()(QByteArrayView ba) [QStringDecoder::EncodedData<QByteArrayView> (QByteArrayView ba)];
     QString decode(QByteArrayView ba) [QStringDecoder::EncodedData<QByteArrayView> (QByteArrayView ba)];
 %If (Qt_6_4_0 -)

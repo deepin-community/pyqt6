@@ -425,6 +425,9 @@ public:
 %If (Qt_6_7_0 -)
         Venetian,
 %End
+%If (Qt_6_8_0 -)
+        Kuvi,
+%End
     };
 
     enum Country
@@ -1256,5 +1259,17 @@ public:
 
 QDataStream &operator<<(QDataStream &, const QLocale &) /ReleaseGIL/;
 QDataStream &operator>>(QDataStream &, QLocale & /Constrained/) /ReleaseGIL/;
+%If (Qt_6_8_0 -)
+bool operator==(const QLocale &lhs, const QLocale::Language &rhs);
+%End
+%If (Qt_6_8_0 -)
+bool operator==(const QLocale::Language &lhs, const QLocale &rhs);
+%End
 bool operator==(const QLocale &lhs, const QLocale &rhs);
+%If (Qt_6_8_0 -)
+bool operator!=(const QLocale &lhs, const QLocale::Language &rhs);
+%End
+%If (Qt_6_8_0 -)
+bool operator!=(const QLocale::Language &lhs, const QLocale &rhs);
+%End
 bool operator!=(const QLocale &lhs, const QLocale &rhs);
