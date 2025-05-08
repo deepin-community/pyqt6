@@ -2,7 +2,7 @@
 //
 // This file is part of the QtCore Python extension module.
 //
-// Copyright (c) 2024 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2025 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt6.
 // 
@@ -169,8 +169,12 @@ public:
     bool isRelative() const;
     bool isAbsolute() const;
     bool makeAbsolute();
+%If (- Qt_6_8_0)
     bool operator==(const QDir &dir) const;
+%End
+%If (- Qt_6_8_0)
     bool operator!=(const QDir &dir) const;
+%End
     bool remove(const QString &fileName);
     bool rename(const QString &oldName, const QString &newName);
     bool exists(const QString &name) const;
@@ -199,3 +203,10 @@ public:
     static QChar listSeparator();
     bool isEmpty(QDir::Filters filters = QDir::Filters(QDir::AllEntries | QDir::NoDotAndDotDot)) const;
 };
+
+%If (Qt_6_8_0 -)
+bool operator!=(const QDir &lhs, const QDir &rhs);
+%End
+%If (Qt_6_8_0 -)
+bool operator==(const QDir &lhs, const QDir &rhs);
+%End

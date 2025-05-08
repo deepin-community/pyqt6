@@ -2,7 +2,7 @@
 //
 // This file is part of the QtNetwork Python extension module.
 //
-// Copyright (c) 2024 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2025 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt6.
 // 
@@ -43,20 +43,20 @@ public:
     void setProxy(const QNetworkProxy &proxy);
     QNetworkCookieJar *cookieJar() const;
     void setCookieJar(QNetworkCookieJar *cookieJar /Transfer/);
-    QNetworkReply *head(const QNetworkRequest &request);
-    QNetworkReply *get(const QNetworkRequest &request);
+    QNetworkReply *head(const QNetworkRequest &request) /Transfer/;
+    QNetworkReply *get(const QNetworkRequest &request) /Transfer/;
 %If (Qt_6_7_0 -)
-    QNetworkReply *get(const QNetworkRequest &request, const QByteArray &data);
+    QNetworkReply *get(const QNetworkRequest &request, const QByteArray &data) /Transfer/;
 %End
 %If (Qt_6_7_0 -)
-    QNetworkReply *get(const QNetworkRequest &request, QIODevice *data);
+    QNetworkReply *get(const QNetworkRequest &request, QIODevice *data) /Transfer/;
 %End
-    QNetworkReply *post(const QNetworkRequest &request, QIODevice *data);
-    QNetworkReply *post(const QNetworkRequest &request, const QByteArray &data);
-    QNetworkReply *post(const QNetworkRequest &request, QHttpMultiPart *multiPart);
-    QNetworkReply *put(const QNetworkRequest &request, QIODevice *data);
-    QNetworkReply *put(const QNetworkRequest &request, const QByteArray &data);
-    QNetworkReply *put(const QNetworkRequest &request, QHttpMultiPart *multiPart);
+    QNetworkReply *post(const QNetworkRequest &request, QIODevice *data) /Transfer/;
+    QNetworkReply *post(const QNetworkRequest &request, const QByteArray &data) /Transfer/;
+    QNetworkReply *post(const QNetworkRequest &request, QHttpMultiPart *multiPart) /Transfer/;
+    QNetworkReply *put(const QNetworkRequest &request, QIODevice *data) /Transfer/;
+    QNetworkReply *put(const QNetworkRequest &request, const QByteArray &data) /Transfer/;
+    QNetworkReply *put(const QNetworkRequest &request, QHttpMultiPart *multiPart) /Transfer/;
 
 signals:
     void proxyAuthenticationRequired(const QNetworkProxy &proxy, QAuthenticator *authenticator);
@@ -80,10 +80,10 @@ public:
     void setProxyFactory(QNetworkProxyFactory *factory /Transfer/);
     QAbstractNetworkCache *cache() const;
     void setCache(QAbstractNetworkCache *cache /Transfer/);
-    QNetworkReply *deleteResource(const QNetworkRequest &request);
-    QNetworkReply *sendCustomRequest(const QNetworkRequest &request, const QByteArray &verb, QIODevice *data = 0);
-    QNetworkReply *sendCustomRequest(const QNetworkRequest &request, const QByteArray &verb, const QByteArray &data);
-    QNetworkReply *sendCustomRequest(const QNetworkRequest &request, const QByteArray &verb, QHttpMultiPart *multiPart);
+    QNetworkReply *deleteResource(const QNetworkRequest &request) /Transfer/;
+    QNetworkReply *sendCustomRequest(const QNetworkRequest &request, const QByteArray &verb, QIODevice *data = 0) /Transfer/;
+    QNetworkReply *sendCustomRequest(const QNetworkRequest &request, const QByteArray &verb, const QByteArray &data) /Transfer/;
+    QNetworkReply *sendCustomRequest(const QNetworkRequest &request, const QByteArray &verb, QHttpMultiPart *multiPart) /Transfer/;
     void clearAccessCache();
     virtual QStringList supportedSchemes() const;
 %If (PyQt_SSL)

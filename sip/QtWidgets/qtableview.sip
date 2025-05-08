@@ -2,7 +2,7 @@
 //
 // This file is part of the QtWidgets Python extension module.
 //
-// Copyright (c) 2024 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2025 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt6.
 // 
@@ -111,4 +111,7 @@ protected:
     virtual void selectionChanged(const QItemSelection &selected, const QItemSelection &deselected);
     virtual void currentChanged(const QModelIndex &current, const QModelIndex &previous);
     virtual void initViewItemOption(QStyleOptionViewItem *option) const;
+%If (Qt_6_8_0 -)
+    virtual void dropEvent(QDropEvent *event);
+%End
 };

@@ -2,7 +2,7 @@
 //
 // This file is part of the QtCore Python extension module.
 //
-// Copyright (c) 2024 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2025 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt6.
 // 
@@ -127,6 +127,9 @@ public:
         Py_END_ALLOW_THREADS
 %End
 
+%If (Qt_6_9_0 -)
+    bool readLineInto(QByteArray *result, qint64 maxSize = 0) /ReleaseGIL/;
+%End
     QByteArray readAll() /ReleaseGIL/;
     virtual bool canReadLine() const;
     void startTransaction();

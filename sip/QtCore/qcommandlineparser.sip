@@ -2,7 +2,7 @@
 //
 // This file is part of the QtCore Python extension module.
 //
-// Copyright (c) 2024 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2025 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt6.
 // 
@@ -69,6 +69,18 @@ public:
     };
 
     void setOptionsAfterPositionalArgumentsMode(QCommandLineParser::OptionsAfterPositionalArgumentsMode mode);
+%If (Qt_6_9_0 -)
+
+    enum class MessageType
+    {
+        Information,
+        Error,
+    };
+
+%End
+%If (Qt_6_9_0 -)
+    static void showMessageAndExit(QCommandLineParser::MessageType type, const QString &message, int exitCode = 0);
+%End
 
 private:
     QCommandLineParser(const QCommandLineParser &);

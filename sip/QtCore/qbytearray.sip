@@ -2,7 +2,7 @@
 //
 // This file is part of the QtCore Python extension module.
 //
-// Copyright (c) 2024 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2025 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt6.
 // 
@@ -161,11 +161,41 @@ public:
     QList<QByteArray> split(char sep /Encoding="None"/) const;
     QByteArray &operator+=(QByteArrayView a);
     bool operator==(const QString &s2) const;
+%MethodCode
+        // Needed for Qt v6.8 and later.
+        sipRes = (*sipCpp == *a0);
+%End
+
     bool operator!=(const QString &s2) const;
+%MethodCode
+        // Needed for Qt v6.8 and later.
+        sipRes = (*sipCpp != *a0);
+%End
+
     bool operator<(const QString &s2) const;
+%MethodCode
+        // Needed for Qt v6.8 and later.
+        sipRes = (*sipCpp < *a0);
+%End
+
     bool operator>(const QString &s2) const;
+%MethodCode
+        // Needed for Qt v6.8 and later.
+        sipRes = (*sipCpp > *a0);
+%End
+
     bool operator<=(const QString &s2) const;
+%MethodCode
+        // Needed for Qt v6.8 and later.
+        sipRes = (*sipCpp <= *a0);
+%End
+
     bool operator>=(const QString &s2) const;
+%MethodCode
+        // Needed for Qt v6.8 and later.
+        sipRes = (*sipCpp >= *a0);
+%End
+
     short toShort(bool *ok = 0, int base = 10) const;
     ushort toUShort(bool *ok = 0, int base = 10) const;
     int toInt(bool *ok = 0, int base = 10) const;
@@ -427,6 +457,18 @@ public:
 %End
 %If (Qt_6_6_0 -)
     QByteArray &assign(QByteArrayView v);
+%End
+%If (Qt_6_8_0 -)
+    QByteArray &slice(qsizetype pos, qsizetype n);
+%End
+%If (Qt_6_8_0 -)
+    QByteArray &slice(qsizetype pos);
+%End
+%If (Qt_6_8_0 -)
+    qsizetype max_size() const;
+%End
+%If (Qt_6_8_0 -)
+    static qsizetype maxSize();
 %End
 };
 

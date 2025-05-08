@@ -2,7 +2,7 @@
 //
 // This file is part of the QtSql Python extension module.
 //
-// Copyright (c) 2024 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2025 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt6.
 // 
@@ -72,4 +72,7 @@ protected:
 
 public:
     virtual QHash<int, QByteArray> roleNames() const;
+%If (Qt_6_9_0 -)
+    void refresh();
+%End
 };

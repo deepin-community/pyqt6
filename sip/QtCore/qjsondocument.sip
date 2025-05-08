@@ -2,7 +2,7 @@
 //
 // This file is part of the QtCore Python extension module.
 //
-// Copyright (c) 2024 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2025 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt6.
 // 
@@ -19,6 +19,8 @@
 // This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
 // WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
+
+%If (- Qt_6_9_0)
 
 struct QJsonParseError
 {
@@ -50,6 +52,8 @@ struct QJsonParseError
     QJsonParseError::ParseError error;
 };
 
+%End
+
 class QJsonDocument
 {
 %TypeHeaderCode
@@ -80,8 +84,12 @@ public:
     QJsonArray array() const;
     void setObject(const QJsonObject &object);
     void setArray(const QJsonArray &array);
+%If (- Qt_6_8_0)
     bool operator==(const QJsonDocument &other) const;
+%End
+%If (- Qt_6_8_0)
     bool operator!=(const QJsonDocument &other) const;
+%End
     bool isNull() const;
     void swap(QJsonDocument &other /Constrained/);
     const QJsonValue operator[](qsizetype i) const;
@@ -90,3 +98,9 @@ public:
 
 QDataStream &operator<<(QDataStream &, const QJsonDocument & /Constrained/) /ReleaseGIL/;
 QDataStream &operator>>(QDataStream &, QJsonDocument & /Constrained/) /ReleaseGIL/;
+%If (Qt_6_8_0 -)
+bool operator!=(const QJsonDocument &lhs, const QJsonDocument &rhs);
+%End
+%If (Qt_6_8_0 -)
+bool operator==(const QJsonDocument &lhs, const QJsonDocument &rhs);
+%End

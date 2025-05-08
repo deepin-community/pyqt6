@@ -1,6 +1,6 @@
 // This is the implementation of the QPyQmlValidatorProxy class.
 //
-// Copyright (c) 2024 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2025 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt6.
 // 
@@ -141,17 +141,17 @@ int QPyQmlValidatorProxy::addType(PyTypeObject *type)
 // Create the Python instance.
 void QPyQmlValidatorProxy::createPyObject(QObject *parent)
 {
-    static const sipTypeDef *qvalidator_td = 0;
+    static const sipTypeDef *validator_td = 0;
 
     SIP_BLOCK_THREADS
 
-    if (!qvalidator_td)
-        qvalidator_td = sipFindType("QValidator");
+    if (!validator_td)
+        validator_td = sipFindType("QValidator");
 
-    if (qvalidator_td)
+    if (validator_td)
     {
         py_proxied = sipCallMethod(NULL, (PyObject *)pyqt_types.at(typeNr()),
-                "D", parent, qvalidator_td, NULL);
+                "D", parent, validator_td, NULL);
 
         if (py_proxied)
             proxied = reinterpret_cast<QValidator *>(

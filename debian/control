@@ -8,8 +8,8 @@ Build-Depends: debhelper-compat (= 13),
                python-dbus-dev,
                python3-all-dev,
                python3-dbus,
-               python3-pyqtbuild (>= 1.15),
-               python3-sipbuild (>= 6.8),
+               python3-pyqtbuild (>= 1.17),
+               python3-sipbuild (>= 6.9),
                qt6-base-dev (>= 6.4.2+dfsg-12~),
                qt6-connectivity-dev [linux-any],
                qt6-declarative-dev,
@@ -18,6 +18,7 @@ Build-Depends: debhelper-compat (= 13),
                qt6-positioning-dev,
                qt6-quick3d-dev,
                qt6-remoteobjects-dev,
+               qt6-scxml-dev,
                qt6-sensors-dev,
                qt6-serialport-dev,
                qt6-shadertools-dev,
@@ -26,9 +27,9 @@ Build-Depends: debhelper-compat (= 13),
                qt6-tools-dev,
                qt6-webchannel-dev,
                qt6-websockets-dev,
-               sip-tools (>= 6.8)
+               sip-tools (>= 6.9)
 Rules-Requires-Root: no
-Standards-Version: 4.7.0
+Standards-Version: 4.7.2
 Homepage: https://riverbankcomputing.com/software/pyqt/intro
 Vcs-Git: https://salsa.debian.org/python-team/packages/pyqt6.git
 Vcs-Browser: https://salsa.debian.org/python-team/packages/pyqt6
@@ -73,7 +74,7 @@ Description: D-Bus Qt main loop support for Python
 Package: python3-pyqt6
 Architecture: any
 Depends: python3-pyqt6.sip (<< 14),
-         python3-pyqt6.sip (>= 13.6),
+         python3-pyqt6.sip (>= 13.8),
          ${misc:Depends},
          ${python3:Depends},
          ${shlibs:Depends}
@@ -246,6 +247,19 @@ Description: Python bindings for Qt 6 Serial Port module
  RS-232 pinouts.
  .
  This package contains the QtSerialPort module of PyQt6.
+
+Package: python3-pyqt6.qtstatemachine
+Architecture: any
+Depends: python3-pyqt6 (= ${binary:Version}),
+         ${misc:Depends},
+         ${python3:Depends},
+         ${shlibs:Depends}
+Description: Python bindings for Qt 6 StateMachine module
+ Qt State Machine API provides functionality to create state machines from
+ SCXML files. It also contains functionality to support data models and
+ executable content.
+ .
+ This package contains the QtStateMachine module of PyQt6.
 
 Package: python3-pyqt6.qtsvg
 Architecture: any

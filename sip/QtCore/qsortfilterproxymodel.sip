@@ -2,7 +2,7 @@
 //
 // This file is part of the QtCore Python extension module.
 //
-// Copyright (c) 2024 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2025 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt6.
 // 
@@ -95,7 +95,12 @@ public:
     void setRecursiveFilteringEnabled(bool recursive);
 
 protected:
+%If (Qt_6_9_0 -)
+    void beginFilterChange();
+%End
     void invalidateFilter();
+    void invalidateRowsFilter();
+    void invalidateColumnsFilter();
 
 signals:
     void dynamicSortFilterChanged(bool dynamicSortFilter);
@@ -109,10 +114,6 @@ signals:
 public:
     bool autoAcceptChildRows() const;
     void setAutoAcceptChildRows(bool accept);
-
-protected:
-    void invalidateRowsFilter();
-    void invalidateColumnsFilter();
 
 signals:
     void autoAcceptChildRowsChanged(bool autoAcceptChildRows);

@@ -2,7 +2,7 @@
 //
 // This file is part of the QtGui Python extension module.
 //
-// Copyright (c) 2024 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2025 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt6.
 // 
@@ -153,6 +153,9 @@ public:
 %End
 %If (Qt_6_2_0 -)
         Format_RGBA32FPx4_Premultiplied,
+%End
+%If (Qt_6_8_0 -)
+        Format_CMYK8888,
 %End
     };
 
@@ -319,13 +322,31 @@ public:
     QColorSpace colorSpace() const;
     void setColorSpace(const QColorSpace &);
     QImage convertedToColorSpace(const QColorSpace &) const;
+%If (Qt_6_8_0 -)
+    QImage convertedToColorSpace(const QColorSpace &colorSpace, QImage::Format format, Qt::ImageConversionFlags flags = Qt::AutoColor);
+%End
     void convertToColorSpace(const QColorSpace &);
+%If (Qt_6_8_0 -)
+    void convertToColorSpace(const QColorSpace &colorSpace, QImage::Format format, Qt::ImageConversionFlags flags = Qt::AutoColor);
+%End
     void applyColorTransform(const QColorTransform &transform);
+%If (Qt_6_8_0 -)
+    void applyColorTransform(const QColorTransform &transform, QImage::Format format, Qt::ImageConversionFlags flags = Qt::AutoColor);
+%End
 %If (Qt_6_2_0 -)
     QSizeF deviceIndependentSize() const;
 %End
 %If (Qt_6_4_0 -)
     QImage colorTransformed(const QColorTransform &transform) const;
+%End
+%If (Qt_6_8_0 -)
+    QImage colorTransformed(const QColorTransform &transform, QImage::Format format, Qt::ImageConversionFlags flags = Qt::AutoColor);
+%End
+%If (Qt_6_9_0 -)
+    QImage flipped(Qt::Orientations orient = Qt::Vertical) const;
+%End
+%If (Qt_6_9_0 -)
+    void flip(Qt::Orientations orient = Qt::Vertical);
 %End
 };
 

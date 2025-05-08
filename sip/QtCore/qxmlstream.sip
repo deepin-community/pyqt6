@@ -2,7 +2,7 @@
 //
 // This file is part of the QtCore Python extension module.
 //
-// Copyright (c) 2024 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2025 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt6.
 // 
@@ -36,8 +36,12 @@ public:
     QStringView prefix() const;
     QStringView value() const;
     bool isDefault() const;
+%If (- Qt_6_8_0)
     bool operator==(const QXmlStreamAttribute &other) const;
+%End
+%If (- Qt_6_8_0)
     bool operator!=(const QXmlStreamAttribute &other) const;
+%End
 };
 
 class QXmlStreamNamespaceDeclaration
@@ -51,8 +55,12 @@ public:
     QXmlStreamNamespaceDeclaration(const QString &prefix, const QString &namespaceUri);
     QStringView prefix() const;
     QStringView namespaceUri() const;
+%If (- Qt_6_8_0)
     bool operator==(const QXmlStreamNamespaceDeclaration &other) const;
+%End
+%If (- Qt_6_8_0)
     bool operator!=(const QXmlStreamNamespaceDeclaration &other) const;
+%End
 };
 
 typedef QList<QXmlStreamNamespaceDeclaration> QXmlStreamNamespaceDeclarations;
@@ -68,8 +76,12 @@ public:
     QStringView name() const;
     QStringView systemId() const;
     QStringView publicId() const;
+%If (- Qt_6_8_0)
     bool operator==(const QXmlStreamNotationDeclaration &other) const;
+%End
+%If (- Qt_6_8_0)
     bool operator!=(const QXmlStreamNotationDeclaration &other) const;
+%End
 };
 
 typedef QList<QXmlStreamNotationDeclaration> QXmlStreamNotationDeclarations;
@@ -87,8 +99,12 @@ public:
     QStringView systemId() const;
     QStringView publicId() const;
     QStringView value() const;
+%If (- Qt_6_8_0)
     bool operator==(const QXmlStreamEntityDeclaration &other) const;
+%End
+%If (- Qt_6_8_0)
     bool operator!=(const QXmlStreamEntityDeclaration &other) const;
+%End
 };
 
 typedef QList<QXmlStreamEntityDeclaration> QXmlStreamEntityDeclarations;
@@ -100,8 +116,16 @@ class QXmlStreamEntityResolver
 %End
 
 public:
+%If (Qt_6_8_0 -)
+    QXmlStreamEntityResolver();
+%End
     virtual ~QXmlStreamEntityResolver();
     virtual QString resolveUndeclaredEntity(const QString &name);
+
+private:
+%If (Qt_6_8_0 -)
+    QXmlStreamEntityResolver(const QXmlStreamEntityResolver &);
+%End
 };
 
 class QXmlStreamReader
@@ -558,3 +582,28 @@ int __contains__(const QXmlStreamAttribute &value);
 sipRes = bool(sipCpp->contains(*a0));
 %End
 };
+
+%If (Qt_6_8_0 -)
+bool operator!=(const QXmlStreamEntityDeclaration &lhs, const QXmlStreamEntityDeclaration &rhs);
+%End
+%If (Qt_6_8_0 -)
+bool operator!=(const QXmlStreamNotationDeclaration &lhs, const QXmlStreamNotationDeclaration &rhs);
+%End
+%If (Qt_6_8_0 -)
+bool operator!=(const QXmlStreamNamespaceDeclaration &lhs, const QXmlStreamNamespaceDeclaration &rhs);
+%End
+%If (Qt_6_8_0 -)
+bool operator!=(const QXmlStreamAttribute &lhs, const QXmlStreamAttribute &rhs);
+%End
+%If (Qt_6_8_0 -)
+bool operator==(const QXmlStreamEntityDeclaration &lhs, const QXmlStreamEntityDeclaration &rhs);
+%End
+%If (Qt_6_8_0 -)
+bool operator==(const QXmlStreamNotationDeclaration &lhs, const QXmlStreamNotationDeclaration &rhs);
+%End
+%If (Qt_6_8_0 -)
+bool operator==(const QXmlStreamNamespaceDeclaration &lhs, const QXmlStreamNamespaceDeclaration &rhs);
+%End
+%If (Qt_6_8_0 -)
+bool operator==(const QXmlStreamAttribute &lhs, const QXmlStreamAttribute &rhs);
+%End

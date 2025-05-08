@@ -2,7 +2,7 @@
 //
 // This file is part of the QtHelp Python extension module.
 //
-// Copyright (c) 2024 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2025 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt6.
 // 
@@ -19,6 +19,8 @@
 // This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
 // WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 
+
+%If (- Qt_6_8_0)
 
 class QHelpContentItem /NoDefaultCtors/
 {
@@ -37,6 +39,8 @@ public:
     int childPosition(QHelpContentItem *child) const;
 };
 
+%End
+
 class QHelpContentModel : public QAbstractItemModel /NoDefaultCtors/
 {
 %TypeHeaderCode
@@ -46,6 +50,9 @@ class QHelpContentModel : public QAbstractItemModel /NoDefaultCtors/
 public:
     virtual ~QHelpContentModel();
     void createContents(const QString &customFilterName);
+%If (Qt_6_8_0 -)
+    void createContentsForCurrentFilter();
+%End
     QHelpContentItem *contentItemAt(const QModelIndex &index) const;
     virtual QVariant data(const QModelIndex &index, int role) const;
     virtual QModelIndex index(int row, int column, const QModelIndex &parent = QModelIndex()) const;

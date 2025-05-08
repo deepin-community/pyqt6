@@ -1,3 +1,25 @@
+v6.9.0 3rd April 2025
+  - Added support for Qt v6.9.
+  - Bug fixes.
+
+v6.8.1 27th January 2025
+  - Added the QtStateMachine module.
+  - Bug fixes.
+
+v6.8.0 4th December 2024
+  - Added support for Qt v6.8 (excluding any technical previews).
+  - Python enums are now handled correctly by Qt Designer (requires Qt v6.8.1
+    or later).
+  - Implemented QtAudio as a synonym for QAudio.
+  - Added QWindow.setVulkanInstance(), QWindow.vulkanInstance(),
+    QVulkanExtension, QVulkanInstance and QVulkanLayer.
+  - Bug fixes.
+
+v6.7.1 1st July 2024
+  - SIP v6.8.6 and PyQt6-sip v13.8 are now required for Python v3.13 support
+    and for Linux on ARM.
+  - Bug fixes.
+
 v6.7.0 17th April 2024
   - Added support for Qt v6.7 (excluding any technical previews).
   - Bug fixes.

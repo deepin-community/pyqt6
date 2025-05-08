@@ -1,6 +1,6 @@
 # This is the PyQt6 build script.
 #
-# Copyright (c) 2024 Riverbank Computing Limited <info@riverbankcomputing.com>
+# Copyright (c) 2025 Riverbank Computing Limited <info@riverbankcomputing.com>
 # 
 # This file is part of PyQt6.
 # 
@@ -28,7 +28,7 @@ from sipbuild import (Buildable, BuildableModule, Installable, Option,
 
 
 # The minimum sip module ABI version needed.
-ABI_VERSION = '13.6'
+ABI_VERSION = '13.8'
 
 
 class PyQt(PyQtProject):
@@ -53,7 +53,7 @@ class PyQt(PyQtProject):
                 QtMultimediaWidgets, QtPositioning, QtRemoteObjects, QtSensors,
                 QtSerialPort, QtWebChannel, QtWebSockets, QtBluetooth, QtNfc,
                 QtPdf, QtPdfWidgets, QtSpatialAudio, QtTextToSpeech,
-                QAxContainer]
+                QtStateMachine, QAxContainer]
 
     def apply_user_defaults(self, tool):
         """ Set default values where needed. """
@@ -826,6 +826,18 @@ class QtSql(PyQtBindings):
         super().__init__(project, 'QtSql', qmake_QT=['sql', 'widgets'],
                 test_headers=['qsqldatabase.h'],
                 test_statement='new QSqlDatabase()')
+
+
+class QtStateMachine(PyQtBindings):
+    """ The QtStateMachone bindings. """
+
+    def __init__(self, project):
+        """ Initialise the bindings. """
+
+        super().__init__(project, 'QtStateMachine',
+                qmake_QT=['statemachine'],
+                test_headers=['qstate.h'],
+                test_statement='new QState()')
 
 
 class QtSvg(PyQtBindings):

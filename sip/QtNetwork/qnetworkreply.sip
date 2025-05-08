@@ -2,7 +2,7 @@
 //
 // This file is part of the QtNetwork Python extension module.
 //
-// Copyright (c) 2024 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2025 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt6.
 // 
@@ -181,5 +181,18 @@ signals:
 %End
 %If (Qt_6_3_0 -)
     void requestSent();
+%End
+
+public:
+%If (Qt_6_8_0 -)
+    QHttpHeaders headers() const;
+%End
+
+protected:
+%If (Qt_6_8_0 -)
+    void setHeaders(const QHttpHeaders &newHeaders);
+%End
+%If (Qt_6_8_0 -)
+    void setWellKnownHeader(QHttpHeaders::WellKnownHeader name, QByteArrayView value);
 %End
 };

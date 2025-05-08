@@ -2,7 +2,7 @@
 //
 // This file is part of the QtCore Python extension module.
 //
-// Copyright (c) 2024 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2025 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt6.
 // 
@@ -41,6 +41,9 @@ class QMessageLogContext /NoDefaultCtors/
 %End
 
 public:
+%If (Qt_6_8_0 -)
+    static const int CurrentVersion;
+%End
     int line;
     const char *file;
     const char *function;

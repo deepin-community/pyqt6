@@ -2,7 +2,7 @@
 //
 // This file is part of the QtNetwork Python extension module.
 //
-// Copyright (c) 2024 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2025 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt6.
 // 
@@ -49,6 +49,9 @@ signals:
 
 protected:
     virtual void incomingConnection(quintptr socketDescriptor);
+%If (Qt_6_8_0 -)
+    void addPendingConnection(QLocalSocket *socket);
+%End
 
 public:
     enum SocketOption /BaseType=Flag/

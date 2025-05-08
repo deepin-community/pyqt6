@@ -2,7 +2,7 @@
 //
 // This file is part of the QtMultimedia Python extension module.
 //
-// Copyright (c) 2024 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2025 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt6.
 // 
@@ -78,6 +78,28 @@ public:
 signals:
 %If (Qt_6_6_0 -)
     void windowCaptureChanged();
+%End
+
+public:
+%If (Qt_6_8_0 -)
+    QAudioBufferInput *audioBufferInput() const;
+%End
+%If (Qt_6_8_0 -)
+    void setAudioBufferInput(QAudioBufferInput *input);
+%End
+%If (Qt_6_8_0 -)
+    QVideoFrameInput *videoFrameInput() const;
+%End
+%If (Qt_6_8_0 -)
+    void setVideoFrameInput(QVideoFrameInput *input);
+%End
+
+signals:
+%If (Qt_6_8_0 -)
+    void audioBufferInputChanged();
+%End
+%If (Qt_6_8_0 -)
+    void videoFrameInputChanged();
 %End
 };
 

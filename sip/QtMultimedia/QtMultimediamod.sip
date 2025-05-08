@@ -2,7 +2,7 @@
 //
 // This file is part of the QtMultimedia Python extension module.
 //
-// Copyright (c) 2024 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2025 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt6.
 // 
@@ -27,7 +27,7 @@
 %Import QtNetwork/QtNetworkmod.sip
 
 %Copying
-Copyright (c) 2024 Riverbank Computing Limited <info@riverbankcomputing.com>
+Copyright (c) 2025 Riverbank Computing Limited <info@riverbankcomputing.com>
 
 This file is part of PyQt6.
 
@@ -50,6 +50,8 @@ WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 %Include qtvideo.sip
 %Include qaudio.sip
 %Include qaudiobuffer.sip
+%Include qaudiobufferinput.sip
+%Include qaudiobufferoutput.sip
 %Include qaudiodecoder.sip
 %Include qaudiodevice.sip
 %Include qaudioformat.sip
@@ -72,6 +74,7 @@ WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 %Include qsoundeffect.sip
 %Include qvideoframe.sip
 %Include qvideoframeformat.sip
+%Include qvideoframeinput.sip
 %Include qvideosink.sip
 %Include qwindowcapture.sip
 %Include qpymultimedia_qlist.sip

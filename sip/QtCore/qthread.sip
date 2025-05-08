@@ -2,7 +2,7 @@
 //
 // This file is part of the QtCore Python extension module.
 //
-// Copyright (c) 2024 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2025 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt6.
 // 
@@ -82,4 +82,26 @@ public:
     void requestInterruption();
     bool isInterruptionRequested() const;
     int loopLevel() const;
+%If (Qt_6_8_0 -)
+    static bool isMainThread();
+%End
+%If (Qt_6_8_0 -)
+    bool isCurrentThread() const;
+%End
+%If (Qt_6_9_0 -)
+
+    enum class QualityOfService
+    {
+        Auto,
+        High,
+        Eco,
+    };
+
+%End
+%If (Qt_6_9_0 -)
+    void setServiceLevel(QThread::QualityOfService serviceLevel);
+%End
+%If (Qt_6_9_0 -)
+    QThread::QualityOfService serviceLevel() const;
+%End
 };

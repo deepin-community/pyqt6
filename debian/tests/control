@@ -70,6 +70,10 @@ Test-Command: debian/tests/test_import.sh PyQt6.QtSerialPort
 Depends: python3-all-dbg, python3-pyqt6.qtserialport
 Restrictions: superficial
 
+Test-Command: debian/tests/test_import.sh PyQt6.QtStateMachine
+Depends: python3-all-dbg, python3-pyqt6.qtstatemachine
+Restrictions: superficial
+
 Test-Command: debian/tests/test_import.sh PyQt6.QtSvg PyQt6.QtSvgWidgets
 Depends: python3-all-dbg, python3-pyqt6.qtsvg
 Restrictions: superficial

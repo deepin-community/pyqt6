@@ -2,7 +2,7 @@
 //
 // This file is part of the QtCore Python extension module.
 //
-// Copyright (c) 2024 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2025 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt6.
 // 
@@ -28,7 +28,12 @@ class QFile : public QFileDevice
 
 public:
     QFile();
+%If (Qt_6_9_0 -)
+    explicit QFile(const QString &name);
+%End
+%If (- Qt_6_9_0)
     QFile(const QString &name);
+%End
     explicit QFile(QObject *parent /TransferThis/);
     QFile(const QString &name, QObject *parent /TransferThis/);
     virtual ~QFile();
@@ -63,4 +68,7 @@ public:
     static bool setPermissions(const QString &filename, QFileDevice::Permissions permissionSpec);
     bool moveToTrash();
     static bool moveToTrash(const QString &fileName, QString *pathInTrash /Out/ = 0);
+%If (Qt_6_9_0 -)
+    static bool supportsMoveToTrash();
+%End
 };

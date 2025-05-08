@@ -2,7 +2,7 @@
  * This is the qmlscene plugin that collects all the Python plugins it can
  * find.
  *
- * Copyright (c) 2024 Riverbank Computing Limited <info@riverbankcomputing.com>
+ * Copyright (c) 2025 Riverbank Computing Limited <info@riverbankcomputing.com>
  * 
  * This file is part of PyQt6.
  * 
@@ -46,42 +46,47 @@ PyQt6QmlPlugin::PyQt6QmlPlugin(QObject *parent) : QQmlExtensionPlugin(parent),
 
         library.setLoadHints(QLibrary::ExportExternalSymbolsHint);
 
-        if (library.load())
+        if (!library.load())
+            return;
+
+        PyConfig py_config;
+        PyConfig_InitPythonConfig(&py_config);
+
+        // If we seem to be running in a venv the set the program name
+        // explicitly so that Python finds the right site-packages.
+        QString venv = QString::fromLocal8Bit(qgetenv("VIRTUAL_ENV"));
+
+        if (!venv.isEmpty())
         {
-            // If we seem to be running in a venv the set the program name
-            // explicitly so that Python finds the right site-packages.
-            QString venv = QString::fromLocal8Bit(qgetenv("VIRTUAL_ENV"));
-
-            if (!venv.isEmpty())
-            {
-                venv.append(QDir::separator());
+            venv.append(QDir::separator());
 #if defined(Q_OS_WIN)
-                venv.append(QLatin1String("Scripts"));
+            venv.append(QLatin1String("Scripts"));
 #else
-                venv.append(QLatin1String("bin"));
+            venv.append(QLatin1String("bin"));
 #endif
-                venv.append(QDir::separator()).append(QLatin1String("python"));
+            venv.append(QDir::separator()).append(QLatin1String("python"));
 
-                wchar_t *venv_wc = new wchar_t[venv.length() + 1];
-                venv_wc[venv.toWCharArray(venv_wc)] = L'\0';
+            wchar_t *venv_wc = new wchar_t[venv.length() + 1];
+            venv_wc[venv.toWCharArray(venv_wc)] = L'\0';
 
-                Py_SetProgramName(venv_wc);
+            // Note that it is not clear if the string can be garbage
+            // collected.
+            py_config.program_name = venv_wc;
+        }
 
-                delete[] venv_wc;
-            }
+        PyStatus status = Py_InitializeFromConfig(&py_config);
 
-            Py_Initialize();
+        if (PyStatus_Exception(status))
+            return;
 
-            getSipAPI();
+        PyConfig_Clear(&py_config);
+
+        getSipAPI();
 
 #ifdef WITH_THREAD
-            // Make sure we don't have the GIL.
-#if PY_VERSION_HEX < 0x03070000
-            PyEval_InitThreads();
+        // Make sure we don't have the GIL.
+        PyEval_SaveThread();
 #endif
-            PyEval_SaveThread();
-#endif
-        }
     }
 }
 

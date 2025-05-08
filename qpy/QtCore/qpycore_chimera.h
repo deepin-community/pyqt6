@@ -1,6 +1,6 @@
 // This is the interface of the Chimera and related classes.
 //
-// Copyright (c) 2024 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2025 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt6.
 // 
@@ -224,7 +224,7 @@ public:
 
     // Register a type as a Python enum.
     static void registerPyEnum(PyObject *enum_type,
-            const QByteArray &cpp_qualname);
+            const QByteArray &fq_cpp_name);
 
     // The Qt meta-type.
     QMetaType metatype;

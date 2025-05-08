@@ -2,7 +2,7 @@
 //
 // This file is part of the QtNetwork Python extension module.
 //
-// Copyright (c) 2024 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2025 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt6.
 // 
@@ -49,6 +49,12 @@ public:
     QNetworkCacheMetaData::AttributesMap attributes() const;
     void setAttributes(const QNetworkCacheMetaData::AttributesMap &attributes);
     void swap(QNetworkCacheMetaData &other /Constrained/);
+%If (Qt_6_8_0 -)
+    QHttpHeaders headers() const;
+%End
+%If (Qt_6_8_0 -)
+    void setHeaders(const QHttpHeaders &headers);
+%End
 };
 
 QDataStream &operator<<(QDataStream &, const QNetworkCacheMetaData & /Constrained/) /ReleaseGIL/;

@@ -2,7 +2,7 @@
 //
 // This file is part of the QtCore Python extension module.
 //
-// Copyright (c) 2024 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2025 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt6.
 // 
@@ -424,6 +424,15 @@ public:
 %End
 %If (Qt_6_7_0 -)
         Venetian,
+%End
+%If (Qt_6_8_0 -)
+        Kuvi,
+%End
+%If (Qt_6_9_0 -)
+        KaraKalpak,
+%End
+%If (Qt_6_9_0 -)
+        SwampyCree,
 %End
     };
 
@@ -1256,5 +1265,17 @@ public:
 
 QDataStream &operator<<(QDataStream &, const QLocale &) /ReleaseGIL/;
 QDataStream &operator>>(QDataStream &, QLocale & /Constrained/) /ReleaseGIL/;
+%If (Qt_6_8_0 -)
+bool operator==(const QLocale &lhs, const QLocale::Language &rhs);
+%End
+%If (Qt_6_8_0 -)
+bool operator==(const QLocale::Language &lhs, const QLocale &rhs);
+%End
 bool operator==(const QLocale &lhs, const QLocale &rhs);
+%If (Qt_6_8_0 -)
+bool operator!=(const QLocale &lhs, const QLocale::Language &rhs);
+%End
+%If (Qt_6_8_0 -)
+bool operator!=(const QLocale::Language &lhs, const QLocale &rhs);
+%End
 bool operator!=(const QLocale &lhs, const QLocale &rhs);

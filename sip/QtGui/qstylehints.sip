@@ -2,7 +2,7 @@
 //
 // This file is part of the QtGui Python extension module.
 //
-// Copyright (c) 2024 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2025 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt6.
 // 
@@ -93,6 +93,25 @@ public:
 signals:
 %If (Qt_6_5_0 -)
     void colorSchemeChanged(Qt::ColorScheme colorScheme);
+%End
+
+public:
+%If (Qt_6_8_0 -)
+    Qt::ContextMenuTrigger contextMenuTrigger() const;
+%End
+%If (Qt_6_8_0 -)
+    void setContextMenuTrigger(Qt::ContextMenuTrigger contextMenuTrigger);
+%End
+%If (Qt_6_8_0 -)
+    void setColorScheme(Qt::ColorScheme scheme);
+%End
+%If (Qt_6_8_0 -)
+    void unsetColorScheme();
+%End
+
+signals:
+%If (Qt_6_8_0 -)
+    void contextMenuTriggerChanged(Qt::ContextMenuTrigger contextMenuTrigger);
 %End
 
 private:
