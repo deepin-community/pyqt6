@@ -2,7 +2,7 @@
 //
 // This file is part of the QtGui Python extension module.
 //
-// Copyright (c) 2024 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2025 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt6.
 // 
@@ -48,4 +48,39 @@ public:
     void setDocumentXmpMetadata(const QByteArray &xmpMetadata);
     QByteArray documentXmpMetadata() const;
     void addFileAttachment(const QString &fileName, const QByteArray &data, const QString &mimeType = QString());
+%If (Qt_6_8_0 -)
+    QUuid documentId() const;
+%End
+%If (Qt_6_8_0 -)
+    void setDocumentId(QUuid documentId);
+%End
+%If (Qt_6_8_0 -)
+
+    enum class ColorModel
+    {
+        RGB,
+        Grayscale,
+        CMYK,
+        Auto,
+    };
+
+%End
+%If (Qt_6_8_0 -)
+    QPdfWriter::ColorModel colorModel() const;
+%End
+%If (Qt_6_8_0 -)
+    void setColorModel(QPdfWriter::ColorModel model);
+%End
+%If (Qt_6_8_0 -)
+    QPdfOutputIntent outputIntent() const;
+%End
+%If (Qt_6_8_0 -)
+    void setOutputIntent(const QPdfOutputIntent &intent);
+%End
+%If (Qt_6_9_0 -)
+    QString author() const;
+%End
+%If (Qt_6_9_0 -)
+    void setAuthor(const QString &author);
+%End
 };

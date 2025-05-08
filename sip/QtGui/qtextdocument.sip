@@ -2,7 +2,7 @@
 //
 // This file is part of the QtGui Python extension module.
 //
-// Copyright (c) 2024 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2025 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt6.
 // 
@@ -61,6 +61,9 @@ public:
         DocumentUrl,
 %If (Qt_6_3_0 -)
         CssMedia,
+%End
+%If (Qt_6_8_0 -)
+        FrontMatter,
 %End
     };
 

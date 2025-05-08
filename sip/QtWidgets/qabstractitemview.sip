@@ -2,7 +2,7 @@
 //
 // This file is part of the QtWidgets Python extension module.
 //
-// Copyright (c) 2024 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2025 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt6.
 // 
@@ -279,4 +279,12 @@ public:
 
 protected:
     virtual void initViewItemOption(QStyleOptionViewItem *option) const;
+
+public:
+%If (Qt_6_9_0 -)
+    int updateThreshold() const;
+%End
+%If (Qt_6_9_0 -)
+    void setUpdateThreshold(int threshold);
+%End
 };

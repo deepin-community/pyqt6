@@ -2,7 +2,7 @@
 //
 // This file is part of the QtCore Python extension module.
 //
-// Copyright (c) 2024 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2025 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt6.
 // 
@@ -164,14 +164,27 @@ public:
     int value(int index) const;
     const char *scope() const;
     int keyToValue(const char *key, bool *ok = 0) const;
+%If (Qt_6_9_0 -)
+    const char *valueToKey(quint64 value) const;
+%End
+%If (- Qt_6_9_0)
     const char *valueToKey(int value) const;
+%End
     int keysToValue(const char *keys, bool *ok = 0) const;
+%If (Qt_6_9_0 -)
+    QByteArray valueToKeys(quint64 value) const;
+%End
+%If (- Qt_6_9_0)
     QByteArray valueToKeys(int value) const;
+%End
     bool isValid() const;
     bool isScoped() const;
     const char *enumName() const;
 %If (Qt_6_6_0 -)
     QMetaType metaType() const;
+%End
+%If (Qt_6_9_0 -)
+    bool is64Bit() const;
 %End
 };
 

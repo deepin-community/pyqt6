@@ -1,6 +1,6 @@
 // This defines the interfaces to the pyqtEnum support.
 //
-// Copyright (c) 2024 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2025 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt6.
 // 
@@ -24,6 +24,7 @@
 
 #include <QByteArray>
 #include <QList>
+#include <QMetaType>
 #include <QPair>
 
 
@@ -32,6 +33,7 @@ struct EnumFlag
 {
     QByteArray name;
     bool isFlag;
+    QMetaType metaType;
     QList<QPair<QByteArray, int> > keys;
 };
 

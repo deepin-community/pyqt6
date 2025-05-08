@@ -2,7 +2,7 @@
 //
 // This file is part of the QtCore Python extension module.
 //
-// Copyright (c) 2024 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2025 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt6.
 // 
@@ -122,6 +122,9 @@ public:
     int activeThreadCount() const /ReleaseGIL/;
     void reserveThread() /ReleaseGIL/;
     void releaseThread() /ReleaseGIL/;
+%If (Qt_6_8_0 -)
+    bool waitForDone(QDeadlineTimer deadline) /ReleaseGIL/ [bool (QDeadlineTimer deadline = QDeadlineTimer::Forever)];
+%End
     bool waitForDone(int msecs = -1) /ReleaseGIL/;
     void clear() /ReleaseGIL/;
     void setStackSize(uint stackSize);
@@ -173,5 +176,11 @@ public:
         Py_END_ALLOW_THREADS
 %End
 
+%End
+%If (Qt_6_9_0 -)
+    void setServiceLevel(QThread::QualityOfService serviceLevel);
+%End
+%If (Qt_6_9_0 -)
+    QThread::QualityOfService serviceLevel() const;
 %End
 };

@@ -2,7 +2,7 @@
 //
 // This file is part of the QtWidgets Python extension module.
 //
-// Copyright (c) 2024 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2025 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt6.
 // 
@@ -151,4 +151,19 @@ signals:
 public:
     void setPlaceholderText(const QString &placeholderText);
     QString placeholderText() const;
+%If (Qt_6_9_0 -)
+
+    enum class LabelDrawingMode
+    {
+        UseStyle,
+        UseDelegate,
+    };
+
+%End
+%If (Qt_6_9_0 -)
+    QComboBox::LabelDrawingMode labelDrawingMode() const;
+%End
+%If (Qt_6_9_0 -)
+    void setLabelDrawingMode(QComboBox::LabelDrawingMode labelDrawing);
+%End
 };

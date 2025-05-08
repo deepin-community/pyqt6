@@ -2,7 +2,7 @@
 //
 // This file is part of the QtGui Python extension module.
 //
-// Copyright (c) 2024 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2025 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt6.
 // 
@@ -25,7 +25,7 @@
 %Import QtCore/QtCoremod.sip
 
 %Copying
-Copyright (c) 2024 Riverbank Computing Limited <info@riverbankcomputing.com>
+Copyright (c) 2025 Riverbank Computing Limited <info@riverbankcomputing.com>
 
 This file is part of PyQt6.
 
@@ -66,6 +66,7 @@ WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 %Include qfontdatabase.sip
 %Include qfontinfo.sip
 %Include qfontmetrics.sip
+%Include qfontvariableaxis.sip
 %Include qgenericmatrix.sip
 %Include qglyphrun.sip
 %Include qguiapplication.sip
@@ -91,7 +92,9 @@ WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 %Include qpaintengine.sip
 %Include qpainter.sip
 %Include qpainterpath.sip
+%Include qpainterstateguard.sip
 %Include qpalette.sip
+%Include qpdfoutputintent.sip
 %Include qpdfwriter.sip
 %Include qpen.sip
 %Include qpicture.sip
@@ -134,4 +137,5 @@ WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 %Include qwindow.sip
 %Include qwindowdefs.sip
 %Include qpygui_qlist.sip
+%Include qpygui_vulkan.sip
 %Include opengl_types.sip

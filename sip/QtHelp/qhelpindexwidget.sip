@@ -2,7 +2,7 @@
 //
 // This file is part of the QtHelp Python extension module.
 //
-// Copyright (c) 2024 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2025 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt6.
 // 
@@ -29,6 +29,9 @@ class QHelpIndexModel : public QStringListModel /NoDefaultCtors/
 public:
     QHelpEngineCore *helpEngine() const;
     void createIndex(const QString &customFilterName);
+%If (Qt_6_8_0 -)
+    void createIndexForCurrentFilter();
+%End
     QModelIndex filter(const QString &filter, const QString &wildcard = QString());
     bool isCreatingIndex() const;
 

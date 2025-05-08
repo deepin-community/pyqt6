@@ -2,7 +2,7 @@
 //
 // This file is part of the QtCore Python extension module.
 //
-// Copyright (c) 2024 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2025 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt6.
 // 
@@ -66,8 +66,12 @@ public:
     QJsonArray toArray(const QJsonArray &defaultValue) const;
     QJsonObject toObject() const;
     QJsonObject toObject(const QJsonObject &defaultValue) const;
+%If (- Qt_6_8_0)
     bool operator==(const QJsonValue &other) const;
+%End
+%If (- Qt_6_8_0)
     bool operator!=(const QJsonValue &other) const;
+%End
     QString toString() const;
     QString toString(const QString &defaultValue) const;
     void swap(QJsonValue &other /Constrained/);
@@ -77,7 +81,23 @@ public:
 %MethodCode
         sipRes = qHash(*sipCpp);
 %End
+
+%If (Qt_6_9_0 -)
+    typedef QJsonDocument::JsonFormat JsonFormat;
+%End
+%If (Qt_6_9_0 -)
+    static QJsonValue fromJson(QByteArrayView json, QJsonParseError *error /Out/ = 0);
+%End
+%If (Qt_6_9_0 -)
+    QByteArray toJson(QJsonValue::JsonFormat format = QJsonDocument::Indented) const;
+%End
 };
 
 QDataStream &operator<<(QDataStream &, const QJsonValue & /Constrained/) /ReleaseGIL/;
 QDataStream &operator>>(QDataStream &, QJsonValue & /Constrained/) /ReleaseGIL/;
+%If (Qt_6_8_0 -)
+bool operator==(const QJsonValue &lhs, const QJsonValue &rhs);
+%End
+%If (Qt_6_8_0 -)
+bool operator!=(const QJsonValue &lhs, const QJsonValue &rhs);
+%End

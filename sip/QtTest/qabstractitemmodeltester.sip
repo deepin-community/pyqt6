@@ -2,7 +2,7 @@
 //
 // This file is part of the QtTest Python extension module.
 //
-// Copyright (c) 2024 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2025 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt6.
 // 
@@ -27,6 +27,15 @@ class QAbstractItemModelTester : public QObject
 #include <qabstractitemmodel.h>
 
 #include <qabstractitemmodeltester.h>
+%End
+
+%ConvertToSubClassCode
+    sipType = (sipCpp->inherits("QAbstractItemModelTester") ? sipType_QAbstractItemModelTester : 0);
+    
+    #if QT_VERSION < 0x060800
+    if (!sipType && sipCpp->inherits("QSignalSpy"))
+        sipType = sipType_QSignalSpy;
+    #endif
 %End
 
 public:

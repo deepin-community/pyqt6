@@ -2,7 +2,7 @@
 //
 // This file is part of the QtCore Python extension module.
 //
-// Copyright (c) 2024 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2025 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt6.
 // 
@@ -45,6 +45,9 @@ public:
         Name,
         Random,
         Sha1,
+%If (Qt_6_9_0 -)
+        UnixEpoch,
+%End
     };
 
     enum StringFormat
@@ -87,15 +90,36 @@ public:
 
     QString toString(QUuid::StringFormat mode = QUuid::WithBraces) const;
     bool isNull() const;
+%If (- Qt_6_8_0)
     bool operator==(const QUuid &orig) const;
+%End
+%If (- Qt_6_8_0)
     bool operator!=(const QUuid &orig) const;
+%End
+%If (- Qt_6_8_0)
     bool operator<(const QUuid &other) const;
+%End
+%If (- Qt_6_8_0)
     bool operator>(const QUuid &other) const;
+%End
     static QUuid createUuid();
+%If (Qt_6_8_0 -)
+    static QUuid createUuidV3(QUuid ns, QByteArrayView baseData);
+%End
+%If (- Qt_6_8_0)
     static QUuid createUuidV3(const QUuid &ns, const QByteArray &baseData);
-    static QUuid createUuidV5(const QUuid &ns, const QByteArray &baseData);
+%End
     static QUuid createUuidV3(const QUuid &ns, const QString &baseData);
+%If (Qt_6_8_0 -)
+    static QUuid createUuidV5(QUuid ns, QByteArrayView baseData);
+%End
+%If (- Qt_6_8_0)
+    static QUuid createUuidV5(const QUuid &ns, const QByteArray &baseData);
+%End
     static QUuid createUuidV5(const QUuid &ns, const QString &baseData);
+%If (Qt_6_9_0 -)
+    static QUuid createUuidV7();
+%End
     QUuid::Variant variant() const;
     QUuid::Version version() const;
     QByteArray toByteArray(QUuid::StringFormat mode = QUuid::WithBraces) const;
@@ -128,3 +152,15 @@ QDataStream &operator<<(QDataStream &, const QUuid & /Constrained/) /ReleaseGIL/
 QDataStream &operator>>(QDataStream &, QUuid & /Constrained/) /ReleaseGIL/;
 bool operator<=(const QUuid &lhs, const QUuid &rhs);
 bool operator>=(const QUuid &lhs, const QUuid &rhs);
+%If (Qt_6_8_0 -)
+bool operator>(const QUuid &lhs, const QUuid &rhs);
+%End
+%If (Qt_6_8_0 -)
+bool operator<(const QUuid &lhs, const QUuid &rhs);
+%End
+%If (Qt_6_8_0 -)
+bool operator!=(const QUuid &lhs, const QUuid &rhs);
+%End
+%If (Qt_6_8_0 -)
+bool operator==(const QUuid &lhs, const QUuid &rhs);
+%End

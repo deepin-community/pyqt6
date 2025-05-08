@@ -2,7 +2,7 @@
 //
 // This file is part of the QtGui Python extension module.
 //
-// Copyright (c) 2024 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2025 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt6.
 // 
@@ -213,4 +213,20 @@ protected:
     virtual void paintEvent(QPaintEvent *);
     virtual void closeEvent(QCloseEvent *);
     virtual bool nativeEvent(const QByteArray &eventType, void *message, qintptr *result /Out/);
+
+public:
+%If (PyQt_Vulkan)
+    void setVulkanInstance(QVulkanInstance *instance);
+%End
+%If (PyQt_Vulkan)
+    QVulkanInstance *vulkanInstance() const;
+%End
+%If (Qt_6_9_0 -)
+    QMargins safeAreaMargins() const;
+%End
+
+signals:
+%If (Qt_6_9_0 -)
+    void safeAreaMarginsChanged(QMargins arg);
+%End
 };

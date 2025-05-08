@@ -2,7 +2,7 @@
 //
 // This file is part of the QtQuickWidgets Python extension module.
 //
-// Copyright (c) 2024 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2025 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt6.
 // 
@@ -34,6 +34,9 @@ public:
     explicit QQuickWidget(QWidget *parent /TransferThis/ = 0);
     QQuickWidget(QQmlEngine *engine, QWidget *parent /TransferThis/);
     QQuickWidget(const QUrl &source, QWidget *parent /TransferThis/ = 0);
+%If (Qt_6_9_0 -)
+    QQuickWidget(QAnyStringView uri, QAnyStringView typeName, QWidget *parent /TransferThis/ = 0);
+%End
     virtual ~QQuickWidget();
     QUrl source() const;
     QQmlEngine *engine() const;
@@ -91,12 +94,16 @@ protected:
     virtual void dragLeaveEvent(QDragLeaveEvent *);
     virtual void dropEvent(QDropEvent *);
     virtual void paintEvent(QPaintEvent *event);
+    virtual bool focusNextPrevChild(bool next);
 
 public:
     QImage grabFramebuffer() const;
     void setClearColor(const QColor &color);
     QQuickWindow *quickWindow() const;
-
-protected:
-    virtual bool focusNextPrevChild(bool next);
+%If (Qt_6_9_0 -)
+    void setInitialProperties(const QVariantMap &initialProperties);
+%End
+%If (Qt_6_9_0 -)
+    void loadFromModule(QAnyStringView uri, QAnyStringView typeName);
+%End
 };

@@ -2,7 +2,7 @@
 //
 // This file is part of the QtWidgets Python extension module.
 //
-// Copyright (c) 2024 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2025 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt6.
 // 
@@ -464,6 +464,9 @@ public:
     {
         None,
         HasFrame,
+%If (Qt_6_9_0 -)
+        MinimumSizeHint,
+%End
     };
 
     typedef QFlags<QStyleOptionTab::TabFeature> TabFeatures;
@@ -619,6 +622,12 @@ public:
         HasCheckIndicator,
         HasDisplay,
         HasDecoration,
+%If (Qt_6_9_0 -)
+        IsDecoratedRootColumn,
+%End
+%If (Qt_6_9_0 -)
+        IsDecorationForRootColumn,
+%End
     };
 
     typedef QFlags<QStyleOptionViewItem::ViewItemFeature> ViewItemFeatures;

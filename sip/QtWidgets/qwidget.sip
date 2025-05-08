@@ -2,7 +2,7 @@
 //
 // This file is part of the QtWidgets Python extension module.
 //
-// Copyright (c) 2024 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2025 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt6.
 // 
@@ -353,6 +353,9 @@ public:
     void overrideWindowFlags(Qt::WindowFlags type);
     static QWidget *find(WId);
     QWidget *childAt(const QPoint &p) const;
+%If (Qt_6_8_0 -)
+    QWidget *childAt(const QPointF &p) const;
+%End
     void setAttribute(Qt::WidgetAttribute attribute, bool on = true);
     virtual QPaintEngine *paintEngine() const;
     void ensurePolished() const;
@@ -512,4 +515,10 @@ public:
     void setWindowFlag(Qt::WindowType, bool on = true);
     QScreen *screen() const;
     void setScreen(QScreen *);
+%If (Qt_6_9_0 -)
+    QString accessibleIdentifier() const;
+%End
+%If (Qt_6_9_0 -)
+    void setAccessibleIdentifier(const QString &identifier);
+%End
 };

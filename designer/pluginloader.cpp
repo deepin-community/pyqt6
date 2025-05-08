@@ -2,7 +2,7 @@
  * This is the Qt Designer plugin that collects all the Python plugins it can
  * find as a widget collection to Designer.
  *
- * Copyright (c) 2024 Riverbank Computing Limited <info@riverbankcomputing.com>
+ * Copyright (c) 2025 Riverbank Computing Limited <info@riverbankcomputing.com>
  * 
  * This file is part of PyQt6.
  * 
@@ -126,6 +126,9 @@ PyCustomWidgets::PyCustomWidgets(QObject *parent) : QObject(parent),
             if (!library.load())
                 return;
 
+            PyConfig py_config;
+            PyConfig_InitPythonConfig(&py_config);
+
             // If we seem to be running in a venv the set the program name
             // explicitly so that Python finds the right site-packages.
             QString venv = QString::fromLocal8Bit(qgetenv("VIRTUAL_ENV"));
@@ -143,18 +146,20 @@ PyCustomWidgets::PyCustomWidgets(QObject *parent) : QObject(parent),
                 wchar_t *venv_wc = new wchar_t[venv.length() + 1];
                 venv_wc[venv.toWCharArray(venv_wc)] = L'\0';
 
-                Py_SetProgramName(venv_wc);
-
-                delete[] venv_wc;
+                // Note that it's not clear if the string can be garbage
+                // collected.
+                py_config.program_name = venv_wc;
             }
 
-            Py_Initialize();
+            PyStatus status = Py_InitializeFromConfig(&py_config);
+
+            if (PyStatus_Exception(status))
+                return;
+
+            PyConfig_Clear(&py_config);
 
 #ifdef WITH_THREAD
             // Make sure we don't have the GIL.
-#if PY_VERSION_HEX < 0x03070000
-            PyEval_InitThreads();
-#endif
             PyEval_SaveThread();
 #endif
         }

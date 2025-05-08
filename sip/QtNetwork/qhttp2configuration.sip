@@ -2,7 +2,7 @@
 //
 // This file is part of the QtNetwork Python extension module.
 //
-// Copyright (c) 2024 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2025 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt6.
 // 
@@ -41,6 +41,12 @@ public:
     bool setMaxFrameSize(unsigned int size);
     unsigned int maxFrameSize() const;
     void swap(QHttp2Configuration &other /Constrained/);
+%If (Qt_6_9_0 -)
+    void setMaxConcurrentStreams(unsigned int value);
+%End
+%If (Qt_6_9_0 -)
+    unsigned int maxConcurrentStreams() const;
+%End
 };
 
 bool operator==(const QHttp2Configuration &lhs, const QHttp2Configuration &rhs);

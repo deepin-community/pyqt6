@@ -1,4 +1,4 @@
-# Copyright (c) 2023 Riverbank Computing Limited.
+# Copyright (c) 2025 Riverbank Computing Limited.
 # Copyright (c) 2006 Thorsten Marek.
 # All right reserved.
 #
@@ -58,7 +58,7 @@ def _parse_alignment(alignment):
 
     align_flags = None
     for qt_align in alignment.split('|'):
-        _, qt_align = qt_align.split('::')
+        *_, qt_align = qt_align.split('::')
         align = getattr(QtCore.Qt.AlignmentFlag, qt_align)
 
         if align_flags is None:

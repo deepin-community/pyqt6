@@ -1,10 +1,7 @@
-// This defines the subset of the interface to Qt5's internal
-// QMetaObjectBuilder class.  The internal representation of a QMetaObject
-// changed in Qt5 (specifically revision 7) sufficiently to justify using this
-// internal code.  The alternative would be to reverse engineer other internal
-// data structures which would be even more fragile.
+// This defines the subset of the interface to Qt6's internal
+// QMetaObjectBuilder class.
 //
-// Copyright (c) 2024 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2025 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt6.
 // 
@@ -29,6 +26,7 @@
 #include <QByteArray>
 #include <QList>
 #include <QMetaObject>
+#include <QMetaType>
 
 QT_BEGIN_NAMESPACE
 
@@ -109,6 +107,7 @@ class Q_CORE_EXPORT QMetaEnumBuilder
 public:
     QMetaEnumBuilder() : _mobj(0), _index(0) {}
 
+    void setMetaType(QMetaType value);
     void setIsFlag(bool value);
     void setIsScoped(bool value);
     int addKey(const QByteArray &name, int value);

@@ -2,7 +2,7 @@
 //
 // This file is part of the QtXml Python extension module.
 //
-// Copyright (c) 2024 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2025 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt6.
 // 
@@ -158,8 +158,12 @@ public:
     QDomNodeList();
     QDomNodeList(const QDomNodeList &);
     ~QDomNodeList();
+%If (- Qt_6_9_0)
     bool operator==(const QDomNodeList &) const;
+%End
+%If (- Qt_6_9_0)
     bool operator!=(const QDomNodeList &) const;
+%End
     QDomNode item(int index) const;
     QDomNode at(int index) const;
     int length() const;
@@ -526,3 +530,9 @@ public:
 };
 
 QTextStream &operator<<(QTextStream &, const QDomNode &) /ReleaseGIL/;
+%If (Qt_6_9_0 -)
+bool operator!=(const QDomNodeList &lhs, const QDomNodeList &rhs);
+%End
+%If (Qt_6_9_0 -)
+bool operator==(const QDomNodeList &lhs, const QDomNodeList &rhs);
+%End

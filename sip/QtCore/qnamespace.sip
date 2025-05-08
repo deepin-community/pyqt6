@@ -2,7 +2,7 @@
 //
 // This file is part of the QtCore Python extension module.
 //
-// Copyright (c) 2024 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2025 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt6.
 // 
@@ -220,6 +220,12 @@ namespace Qt
         BypassWindowManagerHint,
         CoverWindow,
         MaximizeUsingFullscreenGeometryHint,
+%If (Qt_6_9_0 -)
+        ExpandedClientAreaHint,
+%End
+%If (Qt_6_9_0 -)
+        NoTitleBarBackgroundHint,
+%End
     };
 
     typedef QFlags<Qt::WindowType> WindowFlags;
@@ -1242,6 +1248,9 @@ namespace Qt
 %If (Qt_6_7_0 -)
         AA_QtQuickUseDefaultSizePolicy,
 %End
+%If (Qt_6_8_0 -)
+        AA_DontUseNativeMenuWindows,
+%End
     };
 
     enum ItemSelectionMode
@@ -1539,6 +1548,31 @@ namespace Qt
         ChecksumItuV41,
     };
 
+%If (Qt_6_8_0 -)
+    QKeyCombination operator|(Qt::Key key, Qt::KeyboardModifiers modifiers);
+%End
+%If (Qt_6_8_0 -)
+    QKeyCombination operator|(Qt::Key key, Qt::KeyboardModifier modifier);
+%End
+%If (Qt_6_8_0 -)
+    QKeyCombination operator|(Qt::Key key, Qt::Modifiers modifiers);
+%End
+%If (Qt_6_8_0 -)
+    QKeyCombination operator|(Qt::Key key, Qt::Modifier modifier);
+%End
+%If (Qt_6_8_0 -)
+    QKeyCombination operator|(Qt::KeyboardModifiers modifiers, Qt::Key key);
+%End
+%If (Qt_6_8_0 -)
+    QKeyCombination operator|(Qt::KeyboardModifier modifier, Qt::Key key);
+%End
+%If (Qt_6_8_0 -)
+    QKeyCombination operator|(Qt::Modifiers modifiers, Qt::Key key);
+%End
+%If (Qt_6_8_0 -)
+    QKeyCombination operator|(Qt::Modifier modifier, Qt::Key key);
+%End
+
     enum class HighDpiScaleFactorRoundingPolicy
     {
         Round,
@@ -1568,6 +1602,15 @@ namespace Qt
     };
 
 %End
+%If (Qt_6_8_0 -)
+
+    enum class ContextMenuTrigger
+    {
+        Press,
+        Release,
+    };
+
+%End
 };
 
 class QKeyCombination
@@ -1590,27 +1633,45 @@ public:
 %End
 };
 
+%If (Qt_6_8_0 -)
+bool operator==(const QKeyCombination &lhs, const QKeyCombination &rhs);
+%End
+%If (- Qt_6_8_0)
 bool operator==(QKeyCombination lhs, QKeyCombination rhs);
+%End
+%If (Qt_6_8_0 -)
+bool operator!=(const QKeyCombination &lhs, const QKeyCombination &rhs);
+%End
+%If (- Qt_6_8_0)
 bool operator!=(QKeyCombination lhs, QKeyCombination rhs);
+%End
+%If (- Qt_6_8_0)
 QKeyCombination operator|(Qt::Key key, Qt::KeyboardModifiers modifiers);
 %MethodCode
     sipRes = new QKeyCombination(*a1, a0);
 %End
 
+%End
+%If (- Qt_6_8_0)
 QKeyCombination operator|(Qt::Key key, Qt::Modifiers modifiers);
 %MethodCode
     sipRes = new QKeyCombination(*a1, a0);
 %End
 
+%End
+%If (- Qt_6_8_0)
 QKeyCombination operator|(Qt::KeyboardModifier modifier, Qt::Key key);
 %MethodCode
     sipRes = new QKeyCombination(a0, a1);
 %End
 
-Qt::KeyboardModifiers operator|(Qt::KeyboardModifier, Qt::KeyboardModifier);
+%End
+%If (- Qt_6_8_0)
 QKeyCombination operator|(Qt::Modifier modifier, Qt::Key key);
 %MethodCode
     sipRes = new QKeyCombination(a0, a1);
 %End
 
+%End
+Qt::KeyboardModifiers operator|(Qt::KeyboardModifier, Qt::KeyboardModifier);
 Qt::Modifiers operator|(Qt::Modifier, Qt::Modifier);

@@ -2,7 +2,7 @@
 //
 // This file is part of the QtWidgets Python extension module.
 //
-// Copyright (c) 2024 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2025 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt6.
 // 
@@ -67,4 +67,12 @@ protected:
     virtual void closeEvent(QCloseEvent *event);
     virtual void paintEvent(QPaintEvent *event);
     virtual bool event(QEvent *event);
+
+public:
+%If (Qt_6_9_0 -)
+    void setDockLocation(Qt::DockWidgetArea area);
+%End
+%If (Qt_6_9_0 -)
+    Qt::DockWidgetArea dockLocation() const;
+%End
 };

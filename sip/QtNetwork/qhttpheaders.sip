@@ -2,7 +2,7 @@
 //
 // This file is part of the QtNetwork Python extension module.
 //
-// Copyright (c) 2024 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2025 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt6.
 // 
@@ -240,6 +240,12 @@ public:
     static QByteArrayView wellKnownHeaderName(QHttpHeaders::WellKnownHeader name);
     static QHttpHeaders fromListOfPairs(const QList<std::pair<QByteArray, QByteArray>> &headers);
     QList<std::pair<QByteArray, QByteArray>> toListOfPairs() const;
+%If (Qt_6_8_0 -)
+    bool replaceOrAppend(QHttpHeaders::WellKnownHeader name, QAnyStringView newValue);
+%End
+%If (Qt_6_8_0 -)
+    bool replaceOrAppend(QAnyStringView name, QAnyStringView newValue);
+%End
 };
 
 %End

@@ -2,7 +2,7 @@
 //
 // This file is part of the QtCore Python extension module.
 //
-// Copyright (c) 2024 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2025 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt6.
 // 
@@ -22,7 +22,7 @@
 
 %If (Qt_6_4_0 -)
 
-class QStringConverterBase
+class QStringConverterBase /NoDefaultCtors/
 {
 %TypeHeaderCode
 #include <qstringconverter_base.h>
@@ -42,6 +42,9 @@ public:
     typedef QFlags<QStringConverterBase::Flag> Flags;
 
 protected:
+%If (Qt_6_9_0 -)
+    QStringConverterBase();
+%End
     ~QStringConverterBase();
 };
 
@@ -71,7 +74,12 @@ public:
 protected:
     QStringConverter();
     QStringConverter(QStringConverter::Encoding encoding, QStringConverterBase::Flags f);
+%If (Qt_6_8_0 -)
+    QStringConverter(QAnyStringView name, QStringConverterBase::Flags f);
+%End
+%If (- Qt_6_8_0)
     QStringConverter(const char *name, QStringConverterBase::Flags f);
+%End
     ~QStringConverter();
 
 public:

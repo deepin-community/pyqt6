@@ -2,7 +2,7 @@
 //
 // This file is part of the QtMultimedia Python extension module.
 //
-// Copyright (c) 2024 Riverbank Computing Limited <info@riverbankcomputing.com>
+// Copyright (c) 2025 Riverbank Computing Limited <info@riverbankcomputing.com>
 // 
 // This file is part of PyQt6.
 // 
@@ -58,4 +58,13 @@ namespace QAudio
     float convertVolume(float volume, QAudio::VolumeScale from, QAudio::VolumeScale to);
 };
 
+%End
+
+%PostInitialisationCode
+// Implement QtAudio as an alternative name to QAudio.
+
+PyObject *qaudio = PyDict_GetItemString(sipModuleDict, sipName_QAudio);
+
+if (qaudio && PyDict_SetItemString(sipModuleDict, "QtAudio", qaudio) == 0)
+    Py_INCREF(qaudio);
 %End
